@@ -31,7 +31,7 @@ app.use(passport.session());
 app.use('/public',express.static('public'))
 
 app.use(cors({
-    origin: 'https://elevelt-knowlwdge-frontend.vercel.app/',
+    origin: 'http://localhost:5173/',
     optionsSuccessStatus: 200,
     credentials:true
 }))
@@ -45,8 +45,7 @@ connectSocket();
 
 app.use('/api/v1', routes);
 
-// app.listen(process.env.PORT, () => {
-//     console.log(`this port started at ${process.env.PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`this port started at ${process.env.PORT}`);
 
-// })
-module.exports = app
+})
