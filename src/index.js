@@ -45,7 +45,8 @@ connectSocket();
 
 app.use('/api/v1', routes);
 
-app.listen(process.env.PORT, () => {
-    console.log(`this port started at ${process.env.PORT}`);
+// app.listen(process.env.PORT, () => {
+//     console.log(`this port started at ${process.env.PORT}`);
 
-})
+// })
+module.exports=app
