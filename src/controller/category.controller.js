@@ -1,5 +1,6 @@
 const categorysModel = require("../model/categoryes.model");
 const fs = require('fs');
+const { updateCloudanrt } = require("../service/cloudnary");
 
 
 const getAllCategories = async (req, res) => {
@@ -46,6 +47,7 @@ const addCategories = async (req, res) => {
 
     console.log("req.user:",req.user);
     
+    await updateCloudanrt(req.file.path,"category_img");
     const category = await categorysModel.create({ ...req.body, category_img: req.file.path });
 
     console.log('category:', category);
