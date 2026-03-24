@@ -5,7 +5,8 @@ const fs = require('fs');
 const getAllCategories = async (req, res) => {
 
   try {
-    const category = await categorysModel.find()
+    const category = await categorysModel.find();
+    
     if (!category) {
       return res.status(400).json({ data: null, meassage: 'category not added' })
 
