@@ -34,7 +34,7 @@ const getCategories = async (req, res) => {
 
     return res.status(200).json({ data: category, meassage: 'category get data successful' })
   } catch (error) {
-    return res.status(400).json({ data: null, meassage: 'Internal Server error in get category' + error })
+    return res.status(500).json({ data: null, meassage: 'Internal Server error in get category' + error })
 
   }
 
@@ -97,7 +97,7 @@ const updateCategories = async (req, res) => {
     return res.status(200).json({ data: category, meassage: 'category active data successful' })
 
   } catch (error) {
-    return res.status(400).json({ data: null, meassage: 'Internal Server error in active category' + error })
+    return res.status(500).json({ data: null, meassage: 'Internal Server error in active category' + error })
 
   }
 }
@@ -125,7 +125,7 @@ const deleteCategories = async (req, res) => {
 
     return res.status(200).json({ data: category, meassage: 'category delete data successful' })
   } catch (error) {
-    return res.status(400).json({ data: [], meassage: 'Internal Server error in delete category' + error })
+    return res.status(500).json({ data: [], meassage: 'Internal Server error in delete category' + error })
 
   }
 
@@ -153,7 +153,7 @@ const activeCategories = async (req, res) => {
     return res.status(200).json({ data: category, meassage: 'category update data successful' })
 
   } catch (error) {
-    return res.status(400).json({ data: null, meassage: 'Internal Server error in update category' + error })
+    return res.status(500).json({ data: null, meassage: 'Internal Server error in update category' + error })
 
   }
 

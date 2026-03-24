@@ -15,7 +15,7 @@ const getCourses = async (req, res) => {
             return res.status(200).json({ data: course, meassage: 'Course  get successfully' })
 
       } catch (error) {
-            return res.status(400).json({ data: null, meassage: 'Course not get', error })
+            return res.status(500).json({ data: null, meassage: 'Course not get', error })
 
       }
 
