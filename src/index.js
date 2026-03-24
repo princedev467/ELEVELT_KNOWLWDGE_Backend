@@ -41,10 +41,14 @@ googleProvider();
 facebookProvider()
 
 connectSocket();
+
 // http://localhost:2022/api/v1
 
 app.use('/api/v1', routes);
 
+app.get('/',(req,res)=>{
+    res.send('welcomw to backend')
+})
 // app.listen(process.env.PORT, () => {
 //     console.log(`this port started at ${process.env.PORT}`);
 
