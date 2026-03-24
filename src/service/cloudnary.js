@@ -21,6 +21,10 @@ const  cloudinary=require('cloudinary').v2;
            console.log(error);
        });
     
+    //    return 
+
+       console.log("uploadResult:",uploadResult);
+       
         } catch (error) {
             
         }
