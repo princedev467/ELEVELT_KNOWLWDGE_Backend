@@ -21,7 +21,9 @@ const  cloudinary=require('cloudinary').v2;
            console.log(error);
        });
     
-    //    return 
+       return {public_id:uploadResult.public_id,
+                url:uploadResult.url
+            }
 
        console.log("uploadResult:",uploadResult);
        

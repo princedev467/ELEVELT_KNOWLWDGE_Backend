@@ -1,36 +1,42 @@
 const { default: mongoose } = require("mongoose");
 
-const categorySchema=new mongoose.Schema(
+const categorySchema = new mongoose.Schema(
     {
-        name:{
-           type:String,
+        name: {
+            type: String,
             unique: true,
-            trim:true
+            trim: true
         },
-        description:{
-            type:String
+        description: {
+            type: String
         },
-        category_img:{
-            type:String,
-          
+        category_img: {
+            public_id: {
+                type: String,
+            },
+            url: {
+                type: String,
+            }
+
+
         },
-        parent_category_id:{
-            type:mongoose.Types.ObjectId,
-            ref:'categories',
-            default:null
+        parent_category_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'categories',
+            default: null
         },
-        isActive:{
-            type:Boolean,
-            default:true
+        isActive: {
+            type: Boolean,
+            default: true
         }
 
     },
     {
-        timestamps:true,
-        versionKey:false
+        timestamps: true,
+        versionKey: false
     }
 );
 
-const categorysModel=mongoose.model('categories',categorySchema);
+const categorysModel = mongoose.model('categories', categorySchema);
 
-module.exports=categorysModel
+module.exports = categorysModel
