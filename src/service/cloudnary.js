@@ -42,7 +42,7 @@ const deleteCloudanrt = async (public_id) => {
             console.log('Error deleting image:', error);
         } else {
             console.log('Image deleted successfully:', result);
-        }0
+        }
     });
 
 }
