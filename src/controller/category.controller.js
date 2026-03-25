@@ -48,6 +48,7 @@ const addCategories = async (req, res) => {
     console.log("req.user:",req.user);
     
    const obj= await updateCloudanrt(req.file.path,"category_img");
+
     const category = await categorysModel.create({ ...req.body, category_img: {'public_id':obj.public_id,'url':obj.url} });
 
     console.log('category:', category);
@@ -107,7 +108,7 @@ const updateCategories = async (req, res) => {
 const deleteCategories = async (req, res) => {
   try {
 
-    console.log(req.params.id);
+    console.log("req.params.id",req.params.id)
 
     const category = await categorysModel.findByIdAndDelete(req.params.id);
 
