@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/register', user_controller.register);
 
-router.post('/login', user_controller.login);
+router.post('/login', user_controller.login); 
 
 router.post('/userVerify', user_controller.userVerify);
 
