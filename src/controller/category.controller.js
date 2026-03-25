@@ -118,7 +118,7 @@ const deleteCategories = async (req, res) => {
     // await deleteCloudanrt(categoryData.public_id);
 
 
-    console.log('category:-', category)
+    // console.log('category:-', category)
     if (!category) {
       return res.status(400).json({ data: null, meassage: 'category not delete' })
 
