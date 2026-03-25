@@ -1,6 +1,6 @@
 const categorysModel = require("../model/categoryes.model");
 const fs = require('fs');
-const { updateCloudanrt } = require("../service/cloudnary");
+const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getAllCategories = async (req, res) => {
@@ -109,17 +109,20 @@ const deleteCategories = async (req, res) => {
   try {
 
     console.log("req.params.id",req.params.id)
-    const category = await categorysModel.findById(req.params.id);
-    console.log(category);
+    const categoryData = await categorysModel.findById(req.params.id);
+    console.log(categoryData.public_id);
     
 
-    // const category = await categorysModel.findByIdAndDelete(req.params.id);
+    const category = await categorysModel.findByIdAndDelete(req.params.id);
 
-    // console.log('category:-', category)
-    // if (!category) {
-    //   return res.status(400).json({ data: null, meassage: 'category not delete' })
+    // await deleteCloudanrt(categoryData.public_id);
 
-    // }
+
+    console.log('category:-', category)
+    if (!category) {
+      return res.status(400).json({ data: null, meassage: 'category not delete' })
+
+    }
 
 
     // fs.unlink(category.category_img, (err) => {
