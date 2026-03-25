@@ -119,10 +119,10 @@ const deleteCategories = async (req, res) => {
 
 
     // console.log('category:-', category)
-    if (!category) {
-      return res.status(400).json({ data: null, meassage: 'category not delete' })
+    // if (!category) {
+    //   return res.status(400).json({ data: null, meassage: 'category not delete' })
 
-    }
+    // }
 
 
     // fs.unlink(category.category_img, (err) => {
