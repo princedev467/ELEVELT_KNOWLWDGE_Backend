@@ -18,11 +18,10 @@ const categorySchema = new mongoose.Schema(
                 type: String,
             }
 
-
         },
         parent_category_id: { 
             type: mongoose.Types.ObjectId,
-            ref: 'categories',
+            ref: 'categories', 
             default: null
         },
         isActive: {
