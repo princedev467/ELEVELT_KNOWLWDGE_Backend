@@ -20,7 +20,7 @@ const categorySchema = new mongoose.Schema(
 
 
         },
-        parent_category_id: {
+        parent_category_id: { 
             type: mongoose.Types.ObjectId,
             ref: 'categories',
             default: null
