@@ -85,6 +85,8 @@ const updateCategories = async (req, res) => {
       // })
 
         await deleteCloudanrt(categoryData?.category_img?.public_id);
+        
+   const obj= await updateCloudanrt(req.file.path,"category_img");
 
       updatedata.category_img = {public_id:obj.public_id,url:obj.url}
     }
