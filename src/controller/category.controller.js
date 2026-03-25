@@ -110,10 +110,10 @@ const deleteCategories = async (req, res) => {
 
     console.log("req.params.id",req.params.id)
     const categoryData = await categorysModel.findById(req.params.id);
-    console.log(categoryData.public_id);
+    console.log(categoryData.category_img[0]);
     
 
-    const category = await categorysModel.findByIdAndDelete(req.params.id);
+    // const category = await categorysModel.findByIdAndDelete(req.params.id);
 
     // await deleteCloudanrt(categoryData.public_id);
 
