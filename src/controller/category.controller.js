@@ -109,6 +109,9 @@ const deleteCategories = async (req, res) => {
   try {
 
     console.log("req.params.id",req.params.id)
+    const category = await categorysModel.findById(req.params.id);
+    console.log(category);
+    
 
     // const category = await categorysModel.findByIdAndDelete(req.params.id);
 
@@ -126,7 +129,7 @@ const deleteCategories = async (req, res) => {
 
 
 
-    // return res.status(200).json({ data: category, meassage: 'category delete data successful' })
+    return res.status(200).json({ data: category, meassage: 'category delete data successful' })
   } catch (error) {
     return res.status(500).json({ data: [], meassage: 'Internal Server error in delete category' + error })
 
