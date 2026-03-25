@@ -110,23 +110,23 @@ const deleteCategories = async (req, res) => {
 
     console.log("req.params.id",req.params.id)
 
-    const category = await categorysModel.findByIdAndDelete(req.params.id);
+    // const category = await categorysModel.findByIdAndDelete(req.params.id);
 
-    console.log('category:-', category)
-    if (!category) {
-      return res.status(400).json({ data: null, meassage: 'category not delete' })
+    // console.log('category:-', category)
+    // if (!category) {
+    //   return res.status(400).json({ data: null, meassage: 'category not delete' })
 
-    }
-
-
-    fs.unlink(category.category_img, (err) => {
-      console.log(err);
-
-    })
+    // }
 
 
+    // fs.unlink(category.category_img, (err) => {
+    //   console.log(err);
 
-    return res.status(200).json({ data: category, meassage: 'category delete data successful' })
+    // })
+
+
+
+    // return res.status(200).json({ data: category, meassage: 'category delete data successful' })
   } catch (error) {
     return res.status(500).json({ data: [], meassage: 'Internal Server error in delete category' + error })
 
