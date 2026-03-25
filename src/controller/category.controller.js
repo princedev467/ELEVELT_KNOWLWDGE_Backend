@@ -110,7 +110,7 @@ const deleteCategories = async (req, res) => {
 
     console.log("req.params.id",req.params.id)
     const categoryData = await categorysModel.findById(req.params.id);
-    console.log(categoryData.category_img[0]);
+    console.log(categoryData.category_img.public_id);
     
 
     // const category = await categorysModel.findByIdAndDelete(req.params.id);
