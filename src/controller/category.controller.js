@@ -82,7 +82,7 @@ const updateCategories = async (req, res) => {
       // fs.unlink(categoryData.category_img, (err) => {
       //   console.log(err);
 
-      // })
+      // })s
 
         await deleteCloudanrt(categoryData?.category_img?.public_id);
         
