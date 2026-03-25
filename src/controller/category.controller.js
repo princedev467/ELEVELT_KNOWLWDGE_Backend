@@ -79,12 +79,14 @@ const updateCategories = async (req, res) => {
 
 
     if (req.file) {
-      fs.unlink(categoryData.category_img, (err) => {
-        console.log(err);
+      // fs.unlink(categoryData.category_img, (err) => {
+      //   console.log(err);
 
-      })
+      // })
 
-      updatedata.category_img = req.file.path
+        await deleteCloudanrt(categoryData?.category_img?.public_id);
+
+      updatedata.category_img = {public_id:obj.public_id,url:obj.url}
     }
 
 
@@ -115,7 +117,7 @@ const deleteCategories = async (req, res) => {
 
     const category = await categorysModel.findByIdAndDelete(req.params.id);
 
-    await deleteCloudanrt(categoryData.category_img.public_id);
+    await deleteCloudanrt(categoryData?.category_img?.public_id);
 
 
     console.log('category:-', category)
