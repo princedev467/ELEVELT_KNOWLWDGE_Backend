@@ -11,7 +11,7 @@ const categorySchema = new mongoose.Schema(
             type: String
         },
         category_img: {
-            public_id: {
+            public_id: {   
                 type: String,
             },
             url: {
