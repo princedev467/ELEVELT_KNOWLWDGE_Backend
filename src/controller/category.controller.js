@@ -64,11 +64,12 @@ const addCategories = async (req, res) => {
     return res.status(500).json({ data: null, meassage: 'category not added' + error.message })
   }
 
-}
+}   
 
 const updateCategories = async (req, res) => {
 
   try {
+
     const categoryData = await categorysModel.findById(req.params.id);
 
     // console.log("req.file:", req.file);
