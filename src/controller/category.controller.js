@@ -72,7 +72,7 @@ const updateCategories = async (req, res) => {
 
     const categoryData = await categorysModel.findById(req.params.id);
 
-    // console.log("req.file:", req.file);
+    console.log("req.file:", req.file);
 
     let updatedata = { ...req.body, category_img: { public_id: categoryData.category_img.public_id, url: categoryData.category_img.url } };
 
