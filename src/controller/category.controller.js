@@ -7,7 +7,7 @@ const getAllCategories = async (req, res) => {
 
   try {
     const category = await categorysModel.find();
-    
+
     if (!category) {
       return res.status(400).json({ data: null, meassage: 'category not added' })
 
@@ -45,11 +45,11 @@ const addCategories = async (req, res) => {
   try {
     console.log("req.body:", req.body, req.file);
 
-    console.log("req.user:",req.user);
-    
-   const obj= await updateCloudanrt(req.file.path,"category_img");
+    console.log("req.user:", req.user);
 
-    const category = await categorysModel.create({ ...req.body, category_img: {'public_id':obj.public_id,'url':obj.url} });
+    const obj = await updateCloudanrt(req.file.path, "category_img");
+
+    const category = await categorysModel.create({ ...req.body, category_img: { 'public_id': obj.public_id, 'url': obj.url } });
 
     console.log('category:', category);
 
@@ -60,11 +60,11 @@ const addCategories = async (req, res) => {
     return res.status(200).json({ data: category, meassage: 'category  added successfully' })
   } catch (error) {
     console.log(error);
-    
+
     return res.status(500).json({ data: null, meassage: 'category not added' + error.message })
   }
 
-}   
+}
 
 const updateCategories = async (req, res) => {
 
@@ -74,7 +74,7 @@ const updateCategories = async (req, res) => {
 
     // console.log("req.file:", req.file);
 
-    let updatedata = { ...req.body ,category_img: {public_id:categoryData.category_img.public_id,url:categoryData.category_img.url}};
+    let updatedata = { ...req.body, category_img: { public_id: categoryData.category_img.public_id, url: categoryData.category_img.url } };
 
     console.log(updatedata);
 
@@ -85,11 +85,11 @@ const updateCategories = async (req, res) => {
 
       // })s
 
-        await deleteCloudanrt(categoryData?.category_img?.public_id);
-        
-   const obj= await updateCloudanrt(req.file.path,"category_img");
+      await deleteCloudanrt(categoryData?.category_img?.public_id);
 
-      updatedata.category_img = {public_id:obj.public_id,url:obj.url}
+      const obj = await updateCloudanrt(req.file.path, "category_img");
+
+      updatedata.category_img = { public_id: obj.public_id, url: obj.url }
     }
 
 
@@ -113,10 +113,10 @@ const updateCategories = async (req, res) => {
 const deleteCategories = async (req, res) => {
   try {
 
-    console.log("req.params.id",req.params.id)
+    console.log("req.params.id", req.params.id)
     const categoryData = await categorysModel.findById(req.params.id);
     console.log(categoryData.category_img.public_id);
-    
+
 
     const category = await categorysModel.findByIdAndDelete(req.params.id);
 
@@ -159,7 +159,7 @@ const activeCategories = async (req, res) => {
       }
     ])
 
-    console.log("category:",category)
+    console.log("category:", category)
     if (!category) {
       return res.status(400).json({ data: null, meassage: 'category not update' })
 
