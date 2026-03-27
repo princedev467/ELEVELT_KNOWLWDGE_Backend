@@ -17,7 +17,7 @@ const categorySchema = new mongoose.Schema(
             url: {
                 type: String,
             }
-   
+    
         },
         parent_category_id: { 
             type: mongoose.Types.ObjectId,
