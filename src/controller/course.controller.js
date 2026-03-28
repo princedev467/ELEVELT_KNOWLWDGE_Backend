@@ -46,7 +46,7 @@ const addCourses = async (req, res) => {
 
             console.log(req.body);
 
-            const obj = await updateCloudanrt(req.file.path, "Course_img");
+            // const obj = await updateCloudanrt(req.file.path, "Course_img");
 
             const course = await coursesModel.create({ ...req.body, course_img: { 'public_id': obj.public_id, 'url': obj.url } });
 
