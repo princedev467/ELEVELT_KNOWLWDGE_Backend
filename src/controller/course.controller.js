@@ -123,7 +123,7 @@ const deleteCourses = async (req, res) => {
            const course = await coursesModel.findByIdAndDelete(req.params.id);
            
               await deleteCloudanrt(courseData?.course_img?.public_id);
-          
+               
           
             if (!course) {
 
