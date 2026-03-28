@@ -22,7 +22,12 @@ const courseSchema = new mongoose.Schema(
             type: Number
         },
         course_img: {
-            type: String
+             public_id: {   
+                type: String,
+            },
+            url: {
+                type: String,
+            }
         },
         preview_url: {
             type: String
