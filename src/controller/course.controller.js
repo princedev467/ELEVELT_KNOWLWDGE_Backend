@@ -116,7 +116,7 @@ const updateCourses = async (req, res) => {
 const deleteCourses = async (req, res) => {
       try {
             const courseData = await coursesModel.findById(req.params.id);
-            console.log(course);
+            console.log(courseData);
 
            const course = await coursesModel.findByIdAndDelete(req.params.id);
           
