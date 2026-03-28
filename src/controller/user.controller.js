@@ -290,7 +290,7 @@ const LogOut = async (req, res) => {
         const { _id } = req.body
 
         const user = await userModel.findByIdAndUpdate({ _id },
-            {
+            {  
                 $unset: {
                     refreshToken: 1
                 }
