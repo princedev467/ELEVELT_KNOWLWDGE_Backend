@@ -90,12 +90,12 @@ const updateCourses = async (req, res) => {
 
 
 
-            console.log("updateData", updateData);
+            console.log("updatedata", updatedata);
 
 
             const course = await coursesModel.findByIdAndUpdate(
                   req.params.id,
-                  updateData,
+                  updatedata,
                   { new: true, runValidators: true }
             )
 
