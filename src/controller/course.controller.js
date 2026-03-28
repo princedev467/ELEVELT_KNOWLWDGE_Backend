@@ -44,13 +44,13 @@ const addCourses = async (req, res) => {
 
       try {
 
-            console.log(req.body, req.file);
+            console.log(req.body);
 
-    const obj = await updateCloudanrt(req.file.path, "Course_img");
+            const obj = await updateCloudanrt(req.file.path, "Course_img");
 
-    const course = await coursesModel.create({ ...req.body, course_img: { 'public_id': obj.public_id, 'url': obj.url } });
+            const course = await coursesModel.create({ ...req.body, course_img: { 'public_id': obj.public_id, 'url': obj.url } });
 
-    console.log('course:', course);
+            console.log('course:', course);
 
             if (!course) {
                   return res.status(400).json({ data: null, meassage: 'Course not added' })
@@ -151,7 +151,7 @@ const deleteCourses = async (req, res) => {
 
 const activeCourses = async (req, res) => {
       try {
-            console.log("Active's req.body:",req.body);
+            console.log("Active's req.body:", req.body);
 
             // const courseData = await coursesModel.findById(req.params.id);
             // console.log(course);
@@ -163,7 +163,7 @@ const activeCourses = async (req, res) => {
             //       return res.status(404).json({ data: null, message: 'Course not find' });
             // }
 
-            
+
             const course = await coursesModel.findByIdAndUpdate(
                   req.params.id,
                   updateData,
