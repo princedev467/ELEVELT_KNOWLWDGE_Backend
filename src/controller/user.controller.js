@@ -116,7 +116,7 @@ const userVerify = async (req, res) => {
         return res.status(400).json({
             success: false,
             data: [],
-            message: 'Internal Sever error' + error.meassage
+            message: 'Internal Sever error' + error.message
         })
     }
 }
@@ -208,7 +208,7 @@ const login = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: 'Internal Server Error' + error.meassage
+            message: 'Internal Server Error' + error.message
         })
     }
 
@@ -277,7 +277,7 @@ const GenerateToken = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: 'Internal Server Error' + error.meassage
+            message: 'Internal Server Error' + error.message
         })
     }
 
@@ -320,7 +320,7 @@ const LogOut = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: 'Internal Server Error' + error.meassage
+            message: 'Internal Server Error' + error.message
         })
     }
 }
@@ -367,7 +367,7 @@ const forgetPassword = async (req, res) => {
         return res.status(400).json({
             success: false,
             data: [],
-            message: 'Internal Sever error' + error.meassage
+            message: 'Internal Sever error' + error.message
         })
     }
 }
@@ -419,7 +419,7 @@ const checkAuth = async (req, res) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: 'Internal Server Error' + error.meassage
+            message: 'Internal Server Error' + error.message
         })
     }
 }
