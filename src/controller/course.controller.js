@@ -115,27 +115,14 @@ const updateCourses = async (req, res) => {
 
 const deleteCourses = async (req, res) => {
       try {
-            const course = await coursesModel.findByIdAndDelete(req.params.id);
+            const courseData = await coursesModel.findById(req.params.id);
             console.log(course);
 
-            if (course.course_img) {
-                  // const img_path = path.join(__dirname,"../public/image",course.course_img);
-                  const image_path = course.course_img;
-                  console.log(image_path)
-
-
-                  fs.unlink(image_path, (err) => {
-                        if (err) {
-                              console.log('failed to delete image ', err);
-
-                        }
-
-                  })
-
-            }
-
-
-
+           const course = await coursesModel.findByIdAndDelete(req.params.id);
+          
+              await deleteCloudanrt(courseData?.course_img?.public_id);
+          
+          
             if (!course) {
 
                   return res.status(404).json({ data: null, message: 'Course not deleted' });
