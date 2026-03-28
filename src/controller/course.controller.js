@@ -44,7 +44,7 @@ const addCourses = async (req, res) => {
 
       try {
 
-            console.log(req.body);
+            console.log(req.body,req.file);
   
             const obj = await updateCloudanrt(req.file.path, "Course_img");
 
