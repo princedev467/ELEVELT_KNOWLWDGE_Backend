@@ -110,7 +110,8 @@ const updateCourses = async (req, res) => {
 
       } catch (error) {
             return res.status(500).json({ data: null, meassage: 'Internal Server error in active Course' + error.message })
-
+  
+            
       }
 
 }
