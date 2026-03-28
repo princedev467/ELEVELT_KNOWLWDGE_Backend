@@ -121,7 +121,7 @@ const deleteCourses = async (req, res) => {
             console.log(courseData);
 
            const course = await coursesModel.findByIdAndDelete(req.params.id);
-          
+           
               await deleteCloudanrt(courseData?.course_img?.public_id);
           
           
