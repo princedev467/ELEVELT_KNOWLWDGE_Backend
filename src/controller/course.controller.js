@@ -1,5 +1,6 @@
 const coursesModel = require("../model/course.model");
 const fs = require('fs');
+const { updateCloudanrt } = require("../service/cloudnary");
 
 
 const getCourses = async (req, res) => {
@@ -45,10 +46,14 @@ const addCourses = async (req, res) => {
 
             console.log(req.body, req.file);
 
-            // const course = await coursesModel.create(req.body);
-            const course = await coursesModel.create({ ...req.body, course_img: req.file.path });
+          
 
+    const obj = await updateCloudanrt(req.file.path, "Course_img");
 
+    const course = await coursesModel.create({ ...req.body, category_img: { 'public_id': obj.public_id, 'url': obj.url } });
+
+    console.log('course:', course);
+    
             if (!course) {
                   return res.status(400).json({ data: null, meassage: 'Course not added' })
             }
