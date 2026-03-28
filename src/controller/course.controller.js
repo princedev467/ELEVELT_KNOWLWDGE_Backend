@@ -88,10 +88,7 @@ const updateCourses = async (req, res) => {
       updatedata.course_img = { public_id: obj.public_id, url: obj.url }
             }
 
-
-
             console.log("updatedata", updatedata);
-
 
             const course = await coursesModel.findByIdAndUpdate(
                   req.params.id,
@@ -100,7 +97,6 @@ const updateCourses = async (req, res) => {
             )
 
             console.log(course);
-
 
             if (!course) {
                   return res.status(400).json({ data: null, meassage: "Course Not update" })
@@ -111,7 +107,7 @@ const updateCourses = async (req, res) => {
       } catch (error) {
             return res.status(500).json({ data: null, meassage: 'Internal Server error in active Course' + error.message })
   
-            
+
       }
 
 }
