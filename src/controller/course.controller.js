@@ -1,6 +1,6 @@
 const coursesModel = require("../model/course.model");
 const fs = require('fs');
-const { updateCloudanrt } = require("../service/cloudnary");
+const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getCourses = async (req, res) => {
