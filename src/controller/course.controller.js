@@ -69,21 +69,23 @@ const addCourses = async (req, res) => {
 
 const updateCourses = async (req, res) => {
       try {
-            let updateData = { ...req.body }
-
-            const categoryData = await coursesModel.findById(req.params.id)
+           
+            const courseData = await coursesModel.findById(req.params.id)
 
             console.log("req.file", req.file);
-            console.log("categoryData", categoryData);
+            console.log("courseData", courseData);
 
 
+ let updatedata = { ...req.body, course_img: { public_id: courseData.course_img.public_id, url: courseData.course_img.url } };
 
+    console.log(updatedata);
             if (req.file) {
-                  fs.unlink(categoryData.course_img, (error) => {
-                        console.log("Image Not Delete And update", error);
-                  })
+                
+      await deleteCloudanrt(courseData?.course_img?.public_id);
 
-                  updateData.course_img = req.file.path
+      const obj = await updateCloudanrt(req.file.path, "course_img");
+
+      updatedata.course_img = { public_id: obj.public_id, url: obj.url }
             }
 
 
