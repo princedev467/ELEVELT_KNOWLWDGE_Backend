@@ -5,8 +5,9 @@ const jwt = require('jsonwebtoken');
 const sendSMS = require("../service/twilio.js");
 
 const generateToken = async (_id) => {
-    try {
 
+    try {
+// #swagger.tags = ['user']
         const user = await userModel.findById(_id);
 
         const accessToken = jwt.sign(
@@ -26,6 +27,7 @@ const generateToken = async (_id) => {
 }
 
 const register = async (req, res) => {
+    // #swagger.tags = ['user']
     try {
 
         const { email, password, mobile_no } = req.body
@@ -88,6 +90,7 @@ const register = async (req, res) => {
 }
 
 const userVerify = async (req, res) => {
+    // #swagger.tags = ['user']
     try {
 
         const { email, OTP } = req.body
@@ -122,6 +125,7 @@ const userVerify = async (req, res) => {
 }
 
 const login = async (req, res) => {
+    // #swagger.tags = ['user']
 
     try {
         const { email, password } = req.body
@@ -218,6 +222,7 @@ const login = async (req, res) => {
 
 const GenerateToken = async (req, res) => {
     try {
+        // #swagger.tags = ['user']
         console.log("req.cookies", req.cookies);
 
         const decode = await jwt.verify(req.cookies.refressToken, process.env.REFRESSTOKEN_SECRET)
@@ -285,6 +290,7 @@ const GenerateToken = async (req, res) => {
 }
 
 const LogOut = async (req, res) => {
+    // #swagger.tags = ['user']
 
     try {
         const { _id } = req.body
@@ -326,8 +332,9 @@ const LogOut = async (req, res) => {
 }
 
 const forgetPassword = async (req, res) => {
-    try {
 
+    try {
+// #swagger.tags = ['user']
         const { email } = req.body
 
         const existUser = await userModel.findOne({ email })
@@ -374,7 +381,7 @@ const forgetPassword = async (req, res) => {
 
 const checkAuth = async (req, res) => {
     try {
-
+        // #swagger.tags = ['user']
         const Token = await req.cookies.accessToken || req.header('Authorization')?.replace("Bearer ", "")
 
 
@@ -426,7 +433,7 @@ const checkAuth = async (req, res) => {
 
 const resetPassword = async (req, res) => {
     try {
-
+// #swagger.tags = ['user']
         const { email, password } = req.body
 
         const existUser = await userModel.findOne({ email })

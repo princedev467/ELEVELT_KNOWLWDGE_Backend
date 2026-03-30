@@ -1,56 +1,95 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const cookieParser=require('cookie-parser')
+// const express = require('express');
+// const bcrypt = require('bcrypt');
+// const cookieParser=require('cookie-parser')
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocument = require('./swagger-output.json');
 
-//join frontend and backend
-const cors = require('cors')
-const router = express.Router()
-require('dotenv').config()
+// //join frontend and backend
+// const cors = require('cors')
+// const router = express.Router()
+// require('dotenv').config()
 
-const app = express();
-const routes = require('./routes/api/v1/index.routes');
+// const app = express();
+// const routes = require('./routes/api/v1/index.routes');
 
-const mongodbConnnect = require('./db/MongoDb');
-const passport = require('passport');
-const {googleProvider,facebookProvider} = require('./service/provider');
-const connectSocket = require('./service/soketIO');
+// const mongodbConnnect = require('./db/MongoDb');
+// const passport = require('passport');
+// const {googleProvider,facebookProvider} = require('./service/provider');
+// const connectSocket = require('./service/soketIO');
 
 
-console.log(process.env.PORT);
+// console.log(process.env.PORT);
 
-mongodbConnnect();
+// // mongodbConnnect();
 
-app.use(express.json());
-app.use(cookieParser());
+// app.use(express.json());
+// // app.use(cookieParser());
 
-app.use(express.urlencoded({extended:false}))
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+// // app.use(express.urlencoded({extended:false}))
+// // app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+// // app.use(passport.initialize());
+// // app.use(passport.session());
 
-app.use('/public',express.static('public'))
 
-app.use(cors({
-    origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
-    optionsSuccessStatus: 200,
-    credentials:true
-}))
+// app.use('/public',express.static('public'))
 
-// Auth for google and facebook Authentication
-googleProvider();
-facebookProvider()
+// app.use(cors({
+//     // origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
+//       origin: '  http://localhost:5173',
+//     optionsSuccessStatus: 200,
+//     credentials:true
+// }))
 
-connectSocket();
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// http://localhost:2022/api/v1
 
-app.use('/api/v1', routes);
 
-app.get('/',(req,res)=>{
-    res.send('welcomw to backend')
-})
+// // Auth for google and facebook Authentication
+// // googleProvider();
+// // facebookProvider()
+
+// // connectSocket();
+
+// // http://localhost:2022/api/v1
+
+// // app.use('/api/v1', routes);
+
+// // app.get('/',(req,res)=>{
+// //     res.send('welcomw to backend')
+// // })
 // app.listen(process.env.PORT, () => {
 //     console.log(`this port started at ${process.env.PORT}`);
 
 // })
-module.exports=app
+// module.exports=app
+
+require('dotenv').config()
+const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+const mongodbConnnect = require('./db/MongoDb');
+
+const app = express();
+
+//join frontend and backend
+const cors = require('cors')
+
+mongodbConnnect()
+
+// app.use(cors({
+//     // origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
+//       origin: '  http://localhost:5173',
+//     optionsSuccessStatus: 200,
+//     credentials:true
+// }))
+
+app.use(cors())
+
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.listen(process.env.PORT, () => {
+    console.log(`this port started at ${process.env.PORT}`);
+
+})

@@ -4,6 +4,7 @@ const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getCourses = async (req, res) => {
+       // #swagger.tags = ['course']
       try {
             const course = await coursesModel.findById(req.params.id);
 
@@ -23,6 +24,7 @@ const getCourses = async (req, res) => {
 }
 
 const getAllCourses = async (req, res) => {
+         // #swagger.tags = ['course']
       try {
             const course = await coursesModel.find()
 
@@ -40,6 +42,7 @@ const getAllCourses = async (req, res) => {
 }
 
 const addCourses = async (req, res) => {
+         // #swagger.tags = ['course']
       console.log(req.body);
 
       try {
@@ -68,6 +71,7 @@ const addCourses = async (req, res) => {
 }
 
 const updateCourses = async (req, res) => {
+         // #swagger.tags = ['course']
       try {
            
             const courseData = await coursesModel.findById(req.params.id)
@@ -113,6 +117,7 @@ const updateCourses = async (req, res) => {
 }
 
 const deleteCourses = async (req, res) => {
+         // #swagger.tags = ['course']
       try {
             const courseData = await coursesModel.findById(req.params.id);
             console.log(courseData);
@@ -138,6 +143,7 @@ const deleteCourses = async (req, res) => {
 }
 
 const activeCourses = async (req, res) => {
+         // #swagger.tags = ['course']
       try {
             console.log("Active's req.body:", req.body);
 

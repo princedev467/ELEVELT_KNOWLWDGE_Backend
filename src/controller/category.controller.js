@@ -4,7 +4,7 @@ const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getAllCategories = async (req, res) => {
-
+ // #swagger.tags = ['catrgory']
   try {
     const category = await categorysModel.find();
 
@@ -22,6 +22,7 @@ const getAllCategories = async (req, res) => {
 }
 
 const getCategories = async (req, res) => {
+ // #swagger.tags = ['Category']
   try {
 
     console.log(req.params.id);
@@ -41,13 +42,68 @@ const getCategories = async (req, res) => {
 
 }
 
+
+/*
+    #swagger.tags = ['Category']
+    #swagger.consumes = ['multipart/form-data']  
+    #swagger.parameters['name'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Name',
+    },
+    #swagger.parameters['description'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Description',
+    },
+    #swagger.parameters['category_img'] = {
+      in: 'formData',
+      type: 'file',
+      required: 'true',
+      description: 'Category Image',
+    }
+    
+  */
 const addCategories = async (req, res) => {
+  
+
   try {
+
+    /*
+    #swagger.tags = ['Category']
+    #swagger.consumes = ['multipart/form-data']  
+    #swagger.parameters['name'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Name',
+    },
+    #swagger.parameters['description'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Description',
+    },
+    #swagger.parameters['category_img'] = {
+      in: 'formData',
+      type: 'file',
+      required: 'true',
+      description: 'Category Image',
+    }
+    
+  */
+
     console.log("req.body:", req.body, req.file);
 
     console.log("req.user:", req.user);
 
     const obj = await updateCloudanrt(req.file.path, "category_img");
+
+    //   const category = await categorysModel.create({ ...req.body, category_img: req.file.path });
+
+    // console.log('category:', category);
 
     const category = await categorysModel.create({ ...req.body, category_img: { 'public_id': obj.public_id, 'url': obj.url } });
 
@@ -67,6 +123,7 @@ const addCategories = async (req, res) => {
 }
 
 const updateCategories = async (req, res) => {
+ // #swagger.tags = ['Category']
 
   try {
 
@@ -111,6 +168,7 @@ const updateCategories = async (req, res) => {
 }
 
 const deleteCategories = async (req, res) => {
+ // #swagger.tags = ['Category']
   try {
 
     console.log("req.params.id", req.params.id)
@@ -146,6 +204,7 @@ const deleteCategories = async (req, res) => {
 }
 
 const activeCategories = async (req, res) => {
+ // #swagger.tags = ['Category']
 
   try {
     const category = await categorysModel.aggregate([
