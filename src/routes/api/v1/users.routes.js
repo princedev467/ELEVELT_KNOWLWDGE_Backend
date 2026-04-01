@@ -5,23 +5,64 @@ const { generateToken } = require('../../../controller/user.controller');
 const createPdf = require('../../../service/pdfMake');
 const router = express.Router();
 
-router.post('/register', user_controller.register);
+router.post('/register',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
 
-router.post('/login', user_controller.login); 
+next();
 
-router.post('/userVerify', user_controller.userVerify);
+}, user_controller.register);
 
-router.post('/forgetPassword', user_controller.forgetPassword)
+router.post('/login',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+}, user_controller.login); 
+
+router.post('/userVerify',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+}, user_controller.userVerify);
+
+router.post('/forgetPassword', (req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+},user_controller.forgetPassword)
 
 
-router.post('/resetPassword', user_controller.resetPassword)
+router.post('/resetPassword', (req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+},user_controller.resetPassword)
 
 
-router.post('/GenerateToken', user_controller.GenerateToken);
+router.post('/GenerateToken',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
 
-router.post('/LogOut', user_controller.LogOut);
+next();
 
-router.get('/checkAuth', user_controller.checkAuth);
+}, user_controller.GenerateToken);
+
+router.post('/LogOut',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+}, user_controller.LogOut);
+
+router.get('/checkAuth',(req,res,next)=>{ 
+     // #swagger.tags = ['User']
+
+next();
+
+}, user_controller.checkAuth);
+
 
 router.get('/createPdf',createPdf);
 //  ----->  Google Authentication  <-----   //

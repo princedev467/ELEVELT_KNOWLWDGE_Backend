@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const authentication = (roles) =>async (req, res, next) => {
 
     try {
-
-
         //   console.log(roles,req.cookies);
         //   console.log(req.header('Authorization'));
 
@@ -42,7 +40,7 @@ const authentication = (roles) =>async (req, res, next) => {
         // }
 
       
-        // next();
+        next();
 
     } catch (error) {
         console.log(error);
@@ -50,7 +48,7 @@ const authentication = (roles) =>async (req, res, next) => {
         return res.status(500).json({
             success: false,
             data: null,
-            message: 'Internal Server Error' + error.meassage
+            message: 'Internal Server Error' + error.message
         })
     }
 }

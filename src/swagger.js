@@ -2,23 +2,43 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    version: 'lms',            // by default: '1.0.0'
-    title: '',              // by default: 'REST API'
-    description: ''         // by default: ''
+    version: '1.0.0',            // by default: '1.0.0'
+    title: 'lma ',              // by default: 'REST API'
+    description: 'lms related data'         // by default: ''
   },
   host: 'localhost:2022',                 // by default: 'localhost:3000'
   basePath: '/api/v1',             // by default: '/'
   schemes: [],              // by default: ['http']
-  consumes: ['multipart/form-data'],             // by default: ['application/json']
+  consumes: [],             // by default: ['application/json']
   produces: [],             // by default: ['application/json']
   tags: [                   // by default: empty Array
     {
-      name: 'Category',             // Tag name
-      description: 'Category'       // Tag description
+      name: 'category',             // Tag name
+      description: 'category related'       // Tag description
     },
+     {
+      name: 'course',             // Tag name
+      description: 'course related'       // Tag description
+    },
+    {
+      name:'Terms',
+      description:'Terms related'
+    },
+    {
+       name:'User',
+      description:'user related'
+    }
     // { ... }
   ],
-  securityDefinitions: {},  // by default: empty object
+  securityDefinitions: {
+    apiKeyAuth: {
+            type: 'apiKey',
+            in: 'header', // can be 'header', 'query' or 'cookie'
+            name: 'Authorization', // name of the header, query parameter or cookie
+            description: 'JWT Token'
+        }
+    }, 
+    // by default: empty object
   definitions: {}           // by default: empty object
 };
 

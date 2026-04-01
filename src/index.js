@@ -61,7 +61,6 @@
 //     console.log(`this port started at ${process.env.PORT}`);
 
 // })
-// module.exports=app
 
 require('dotenv').config()
 const express = require('express');
@@ -69,27 +68,42 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 const mongodbConnnect = require('./db/MongoDb');
 
+const routes = require('./routes/api/v1/index');
+
 const app = express();
+
+
+
+
+app.use(express.json());
+
+app.use(express.urlencoded({extended:false}));
 
 //join frontend and backend
 const cors = require('cors')
 
+app.use('/public',express.static('public'))
+
 mongodbConnnect()
 
-// app.use(cors({
-//     // origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
-//       origin: '  http://localhost:5173',
-//     optionsSuccessStatus: 200,
-//     credentials:true
-// }))
+app.use(cors({
+    origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
+    //   origin: '  http://localhost:5173',
+    optionsSuccessStatus: 200,
+    credentials:true
+}))
 
-app.use(cors())
+// app.use(cors())
 
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(process.env.PORT, () => {
-    console.log(`this port started at ${process.env.PORT}`);
+app.use('/api/v1', routes);
 
-})
+// app.listen(process.env.PORT, () => {
+//     console.log(`this port started at ${process.env.PORT}`);
+
+// })
+
+module.exports=app

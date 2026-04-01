@@ -4,7 +4,7 @@ const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getAllCategories = async (req, res) => {
- // #swagger.tags = ['catrgory']
+
   try {
     const category = await categorysModel.find();
 
@@ -16,13 +16,13 @@ const getAllCategories = async (req, res) => {
 
     return res.status(200).json({ data: category, meassage: 'category getAll data successful' })
   } catch (error) {
-    return res.status(400).json({ data: null, meassage: 'Internal Server error in getAll category' + error })
+    return res.status(400).json({ data: null, meassage: 'Internal Server error in getAll category' + error.meassage })
   }
 
 }
 
 const getCategories = async (req, res) => {
- // #swagger.tags = ['Category']
+ 
   try {
 
     console.log(req.params.id);
@@ -42,58 +42,10 @@ const getCategories = async (req, res) => {
 
 }
 
-
-/*
-    #swagger.tags = ['Category']
-    #swagger.consumes = ['multipart/form-data']  
-    #swagger.parameters['name'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Name',
-    },
-    #swagger.parameters['description'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Description',
-    },
-    #swagger.parameters['category_img'] = {
-      in: 'formData',
-      type: 'file',
-      required: 'true',
-      description: 'Category Image',
-    }
-    
-  */
 const addCategories = async (req, res) => {
   
 
   try {
-
-    /*
-    #swagger.tags = ['Category']
-    #swagger.consumes = ['multipart/form-data']  
-    #swagger.parameters['name'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Name',
-    },
-    #swagger.parameters['description'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Description',
-    },
-    #swagger.parameters['category_img'] = {
-      in: 'formData',
-      type: 'file',
-      required: 'true',
-      description: 'Category Image',
-    }
-    
-  */
 
     console.log("req.body:", req.body, req.file);
 
@@ -101,7 +53,7 @@ const addCategories = async (req, res) => {
 
     const obj = await updateCloudanrt(req.file.path, "category_img");
 
-    //   const category = await categorysModel.create({ ...req.body, category_img: req.file.path });
+      // const category = await categorysModel.create({ ...req.body, category_img: req.file.path });
 
     // console.log('category:', category);
 
@@ -123,7 +75,7 @@ const addCategories = async (req, res) => {
 }
 
 const updateCategories = async (req, res) => {
- // #swagger.tags = ['Category']
+ 
 
   try {
 
@@ -168,7 +120,7 @@ const updateCategories = async (req, res) => {
 }
 
 const deleteCategories = async (req, res) => {
- // #swagger.tags = ['Category']
+ 
   try {
 
     console.log("req.params.id", req.params.id)
@@ -204,8 +156,7 @@ const deleteCategories = async (req, res) => {
 }
 
 const activeCategories = async (req, res) => {
- // #swagger.tags = ['Category']
-
+ 
   try {
     const category = await categorysModel.aggregate([
       {

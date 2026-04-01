@@ -8,15 +8,40 @@ const router=express.Router();
 
 // http://localhost:2022/api/v1/Terms/getTerms
 
-router.get('/getTerms/:id',Terms_controller.getTerms);  
+router.get('/getTerms/:id',(req,res,next)=>{ 
+     // #swagger.tags = ['Terms']
 
-router.get('/getAllTerms',Terms_controller.getAllTerms);
+next();
 
-router.post('/addTerms' ,upload.single('course_img'),Terms_controller.addTerms)
+},Terms_controller.getTerms);  
 
-router.put('/updateTerms/:id',upload.single('course_img'),Terms_controller.updateTerms)
+router.get('/getAllTerms',(req,res,next)=>{ 
+     // #swagger.tags = ['Terms']
 
-router.delete('/deleteTerms/:id',Terms_controller.deleteTerms)
+next();
+
+},Terms_controller.getAllTerms);
+
+router.post('/addTerms' ,(req,res,next)=>{ 
+     // #swagger.tags = ['Terms']
+
+next();
+
+},Terms_controller.addTerms)
+
+router.put('/updateTerms/:id',(req,res,next)=>{ 
+     // #swagger.tags = ['Terms']
+
+next();
+
+},Terms_controller.updateTerms)
+
+router.delete('/deleteTerms/:id',(req,res,next)=>{ 
+     // #swagger.tags = ['Terms']
+
+next();
+
+},Terms_controller.deleteTerms)
 
 
 

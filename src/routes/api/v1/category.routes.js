@@ -4,46 +4,85 @@ const upload = require('../../../middleware/upload');
 const { authentication } = require('../../../middleware/Auth');
 const router=express.Router();
 
+router.get('/getAllCategory',(req, res, next) => {
+// #swagger.tags = ['category']
+   next();
+},Category_Controller.getAllCategories);
 
-router.get('/getCategory/:id',Category_Controller.getCategories);
 
-router.get('/getAllCategory',Category_Controller.getAllCategories);
+router.get('/getCategory/:id',(req, res, next) => {
+// #swagger.tags = ['category']
+   next();
+},Category_Controller.getCategories);
 
-router.get('/activeCategory',Category_Controller.activeCategories);
 
-router.post('/addCategory',upload.single('category_img'), Category_Controller.addCategories);
-//authentication(['admin','employee','instructor','user'])
 
-// router.post('/addCategory', (req, res) => {
-// /*
-//     #swagger.auto = false
-//     #swagger.tags = ['Category']
-//     #swagger.consumes = ['multipart/form-data']  
-//     #swagger.parameters['name'] = {
-//       in: 'formData',
-//       type: 'string',
-//       required: 'true',
-//       description: 'Category Name',
-//     },
-//     #swagger.parameters['description'] = {
-//       in: 'formData',
-//       type: 'string',
-//       required: 'true',
-//       description: 'Category Description',
-//     },
-//     #swagger.parameters['category_img'] = {
-//       in: 'formData',
-//       type: 'file',
-//       required: 'true',
-//       description: 'Category Image',
-//     }
+
+router.post('/addCategory', authentication(['user']),upload.single('category_img'),(req, res, next) => {
+        // #swagger.tags = ['category']
     
-//   */
-// })
+    /*
+    #swagger.consumes = ['multipart/form-data']  
+    #swagger.parameters['name'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Name',
+    },
+    #swagger.parameters['description'] = {
+      in: 'formData',
+      type: 'string',
+      required: 'true',
+      description: 'Category Description',
+    },
+    #swagger.parameters['category_img'] = {
+      in: 'formData',
+      type: 'file',
+      required: 'true',
+      description: 'Category Image',
+    }
+    
+  */
+        next();
+    },Category_Controller.addCategories);
 
-router.put('/updateCategory/:id',upload.single('category_img'),Category_Controller.updateCategories);
+router.put('/updateCategory/:id', authentication(['user']),upload.single('category_img'),(req, res, next) => {
+        // #swagger.tags = ['category']
+    
+    /*
+    #swagger.consumes = ['multipart/form-data']  
+    #swagger.parameters['name'] = {
+      in: 'formData',
+      type: 'string',
+      description: 'Category Name',
+    },
+    #swagger.parameters['description'] = {
+      in: 'formData',
+      type: 'string',
+      description: 'Category Description',
+    },
+    #swagger.parameters['category_img'] = {
+      in: 'formData',
+      type: 'file',
+      description: 'Category Image',
+    }
+    
+  */
+        next();
+    },Category_Controller.updateCategories);
 
 
-router.delete('/deleteCategory/:id',Category_Controller.deleteCategories);
+
+router.get('/activeCategory',(req, res, next) => {
+// #swagger.tags = ['category']
+   next();
+},Category_Controller.activeCategories);
+
+
+router.delete('/deleteCategory/:id', authentication(['user']),(req, res, next) => {
+// #swagger.tags = ['category']
+   next();
+},Category_Controller.deleteCategories);
+
 
 module.exports=router
