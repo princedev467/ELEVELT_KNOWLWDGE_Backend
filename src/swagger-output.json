@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "lma ",
+    "title": "lms",
     "description": "lms related data"
   },
-  "host": "localhost:2022",
+  "host": "elevelt-knowlwdge-backend.vercel.app",
   "basePath": "/api/v1",
   "tags": [
     {
