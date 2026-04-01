@@ -68,6 +68,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 const mongodbConnnect = require('./db/MongoDb');
 
+const cookieParser=require('cookie-parser')
 const routes = require('./routes/api/v1/index');
 
 const app = express();
@@ -85,6 +86,8 @@ const cors = require('cors')
 app.use('/public',express.static('public'))
 
 mongodbConnnect()
+
+app.use(cookieParser());
 
 app.use(cors({
     origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
