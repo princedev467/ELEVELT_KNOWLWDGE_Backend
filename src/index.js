@@ -24,9 +24,6 @@
 
 // app.use(express.json());
 // // app.use(cookieParser());
-
-// // app.use(express.urlencoded({extended:false}))
-// // app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 // // app.use(passport.initialize());
 // // app.use(passport.session());
 
@@ -67,7 +64,8 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 const mongodbConnnect = require('./db/MongoDb');
-
+const bcrypt = require('bcrypt');
+const passport = require('passport');
 const cookieParser=require('cookie-parser')
 const routes = require('./routes/api/v1/index');
 
@@ -84,6 +82,11 @@ app.use(express.urlencoded({extended:false}));
 const cors = require('cors')
 
 app.use('/public',express.static('public'))
+
+app.use(express.urlencoded({extended:false}))
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+ app.use(passport.initialize());
+app.use(passport.session());
 
 mongodbConnnect()
 

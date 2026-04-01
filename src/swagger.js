@@ -6,7 +6,8 @@ const doc = {
     title: 'lms',              // by default: 'REST API'
     description: 'lms related data'         // by default: ''
   },
-  host: 'elevelt-knowlwdge-backend.vercel.app',                 // by default: 'localhost:3000'
+  host: 'elevelt-knowlwdge-backend.vercel.app',   
+  // host:'localhost:2022',              // by default: 'localhost:3000'
   basePath: '/api/v1',             // by default: '/'
   schemes: [],              // by default: ['http']
   consumes: [],             // by default: ['application/json']
