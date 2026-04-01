@@ -11,7 +11,7 @@ const doc = {
   schemes: [],              // by default: ['http']
   consumes: [],             // by default: ['application/json']
   produces: [],             // by default: ['application/json']
-  tags: [                   // by default: empty Array
+  tags: [                      // by default: empty Array
     {
       name: 'category',             // Tag name
       description: 'category related'       // Tag description
