@@ -72,8 +72,6 @@ const routes = require('./routes/api/v1/index');
 const app = express();
 
 
-
-
 app.use(express.json());
 
 app.use(express.urlencoded({extended:false}));
