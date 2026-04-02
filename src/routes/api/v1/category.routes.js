@@ -2,6 +2,8 @@ const express=require('express');
 const { Category_Controller } = require('../../../controller/index.controller');
 const upload = require('../../../middleware/upload');
 const { authentication } = require('../../../middleware/Auth');
+const validate = require('../../../middleware/validator');
+const { addCategory, updateCategory, deleteCategory } = require('../../../Validator/category.validator');
 const router=express.Router();
 
 router.get('/getAllCategory',(req, res, next) => {
@@ -18,7 +20,7 @@ router.get('/getCategory/:id',(req, res, next) => {
 
 
 
-router.post('/addCategory', authentication(['user']),upload.single('category_img'),(req, res, next) => {
+router.post('/addCategory',validate(addCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
         // #swagger.tags = ['category']
     
     /*
@@ -46,7 +48,7 @@ router.post('/addCategory', authentication(['user']),upload.single('category_img
         next();
     },Category_Controller.addCategories);
 
-router.put('/updateCategory/:id', authentication(['user']),upload.single('category_img'),(req, res, next) => {
+router.put('/updateCategory/:id',validate(updateCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
         // #swagger.tags = ['category']
     
     /*
@@ -79,7 +81,7 @@ router.get('/activeCategory',(req, res, next) => {
 },Category_Controller.activeCategories);
 
 
-router.delete('/deleteCategory/:id', authentication(['user']),(req, res, next) => {
+router.delete('/deleteCategory/:id', validate(deleteCategory),authentication(['user']),(req, res, next) => {
 // #swagger.tags = ['category']
    next();
 },Category_Controller.deleteCategories);
