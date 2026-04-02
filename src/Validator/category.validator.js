@@ -1,8 +1,8 @@
 const Joi = require("joi");
 
 const categorySchema=Joi.object({
-    name:joi.string().required(),
-    description:joi.string().min(3).max(100).required(),
+    name:Joi.string().required(),
+    description:Joi.string().min(3).max(100).required(),
 });
 
-module.exports={categorySchema}
+module.exports=categorySchema;

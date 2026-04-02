@@ -96,7 +96,9 @@ router.get('/auth/google/callback',
                 .cookie("accessToken", accessToken, accOpt)
                 .cookie("refressToken", refressToken, refOpt)
                 .status(200)
-                .redirect('https://elevelt-knowlwdge-frontend.vercel.app');
+                
+                .redirect('http://localhost:5173');
+               //  .redirect('https://elevelt-knowlwdge-frontend.vercel.app');
   });
 
 
