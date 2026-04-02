@@ -1,6 +1,7 @@
 const categorysModel = require("../model/categoryes.model");
 const fs = require('fs');
 const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
+const { categorySchema } = require("../Validator/category.validator");
 
 
 const getAllCategories = async (req, res) => {
@@ -47,6 +48,13 @@ const addCategories = async (req, res) => {
 
   try {
 
+    const {error,value}=categorySchema.validate(req.body);
+
+    if(error){
+      console.log(error);
+      return res.send(error.details)
+      
+    }
     console.log("req.body:", req.body, req.file);
 
     console.log("req.user:", req.user);
@@ -114,7 +122,7 @@ const updateCategories = async (req, res) => {
     return res.status(200).json({ data: category, meassage: 'category active data successful' })
 
   } catch (error) {
-    return res.status(500).json({ data: null, meassage: 'Internal Server error in active category' + error })
+    return res.status(500).json({ data: null, meassage: 'Internal Server error in active category' + error.message })
 
   }
 }
@@ -149,7 +157,7 @@ const deleteCategories = async (req, res) => {
 
     return res.status(200).json({ data: category, meassage: 'category delete data successful' })
   } catch (error) {
-    return res.status(500).json({ data: [], meassage: 'Internal Server error in delete category' + error })
+    return res.status(500).json({ data: [], meassage: 'Internal Server error in delete category' + error.message })
 
   }
 
