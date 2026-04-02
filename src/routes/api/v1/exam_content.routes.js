@@ -2,6 +2,7 @@ const express=require('express')
 const router=express.Router();
 
 
+
 router.get('/getExam_content',(req,res)=>{
     res.status(200).json({id:101,name:'prince'})
 });
