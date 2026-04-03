@@ -8,6 +8,7 @@ const router=express.Router();
 router.get('/getCard',(req,res)=>{
     res.status(200).json({id:101,name:'abc'})
 });
+    
 
 router.get('/getAllCard',(req,res)=>{
     res.status(200).json()
