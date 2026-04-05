@@ -18,7 +18,7 @@ router.get('/getAllCourse',(req, res, next) => {
    next();
 },course_controller.getAllCourses);
 
-router.post('/addCourse',upload.single('course_img'),(req, res, next) => {
+router.post('/addCourse', upload.array('course_img'),(req, res, next) => {
         // #swagger.tags = ['course']
     
     /*

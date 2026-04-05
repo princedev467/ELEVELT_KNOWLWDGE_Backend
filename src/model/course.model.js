@@ -5,7 +5,7 @@ const courseSchema = new mongoose.Schema(
         category_id: {
             type: mongoose.Types.ObjectId,
             ref: 'categories',
-            
+
         },
         name: {
             type: String,
@@ -18,17 +18,21 @@ const courseSchema = new mongoose.Schema(
         price: {
             type: Number
         },
+        Instructor_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Instructor',
+        },
         week: {
             type: Number
         },
-        course_img: {
-             public_id: {   
+        course_img: [{
+            public_id: {
                 type: String,
             },
             url: {
                 type: String,
             }
-        },
+        }],
         preview_url: {
             type: String
         },

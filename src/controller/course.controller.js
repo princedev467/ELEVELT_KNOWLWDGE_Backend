@@ -4,7 +4,7 @@ const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
 
 
 const getCourses = async (req, res) => {
-       // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       try {
             const course = await coursesModel.findById(req.params.id);
 
@@ -24,7 +24,7 @@ const getCourses = async (req, res) => {
 }
 
 const getAllCourses = async (req, res) => {
-         // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       try {
             const course = await coursesModel.find()
 
@@ -42,18 +42,32 @@ const getAllCourses = async (req, res) => {
 }
 
 const addCourses = async (req, res) => {
-         // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       console.log(req.body);
 
       try {
 
             console.log(req.body);
-            console.log('req.file',req.file);
-            
-  
-            const obj = await updateCloudanrt(req.file.path, "Course_img");
+            console.log('51_course_control_req.file', req.files);
 
-            const course = await coursesModel.create({ ...req.body, course_img: { 'public_id': obj.public_id, 'url': obj.url } });
+            const ImageData = req.files
+
+            let uploadedImages = [];
+
+            for (const file of ImageData) {
+
+                  const obj = await updateCloudanrt(file.path, "Course_img");
+
+                  uploadedImages.push({
+                        public_id: obj.public_id,
+                        url: obj.url
+                  });
+            }
+
+
+            console.log("uploadedImages",uploadedImages);
+
+            const course = await coursesModel.create({ ...req.body, course_img: uploadedImages });
 
             console.log('course:', course);
 
@@ -71,25 +85,25 @@ const addCourses = async (req, res) => {
 }
 
 const updateCourses = async (req, res) => {
-         // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       try {
-           
+
             const courseData = await coursesModel.findById(req.params.id)
 
             console.log("req.file", req.file);
             console.log("courseData", courseData);
 
 
- let updatedata = { ...req.body, course_img: { public_id: courseData.course_img.public_id, url: courseData.course_img.url } };
+            let updatedata = { ...req.body, course_img: { public_id: courseData.course_img.public_id, url: courseData.course_img.url } };
 
-    console.log(updatedata);
+            console.log(updatedata);
             if (req.file) {
-                
-      await deleteCloudanrt(courseData?.course_img?.public_id);
 
-      const obj = await updateCloudanrt(req.file.path, "course_img");
+                  await deleteCloudanrt(courseData?.course_img?.public_id);
 
-      updatedata.course_img = { public_id: obj.public_id, url: obj.url }
+                  const obj = await updateCloudanrt(req.file.path, "course_img");
+
+                  updatedata.course_img = { public_id: obj.public_id, url: obj.url }
             }
 
             console.log("updatedata", updatedata);
@@ -110,23 +124,23 @@ const updateCourses = async (req, res) => {
 
       } catch (error) {
             return res.status(500).json({ data: null, meassage: 'Internal Server error in active Course' + error.message })
-  
+
 
       }
 
 }
 
 const deleteCourses = async (req, res) => {
-         // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       try {
             const courseData = await coursesModel.findById(req.params.id);
             console.log(courseData);
 
-           const course = await coursesModel.findByIdAndDelete(req.params.id);
-           
-              await deleteCloudanrt(courseData?.course_img?.public_id);
-               
-          
+            const course = await coursesModel.findByIdAndDelete(req.params.id);
+
+            await deleteCloudanrt(courseData?.course_img?.public_id);
+
+
             if (!course) {
 
                   return res.status(404).json({ data: null, message: 'Course not deleted' });
@@ -143,7 +157,7 @@ const deleteCourses = async (req, res) => {
 }
 
 const activeCourses = async (req, res) => {
-         // #swagger.tags = ['course']
+      // #swagger.tags = ['course']
       try {
             console.log("Active's req.body:", req.body);
 
