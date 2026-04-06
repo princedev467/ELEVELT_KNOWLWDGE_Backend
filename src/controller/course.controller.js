@@ -48,7 +48,9 @@ const addCourses = async (req, res) => {
       try {
 
             console.log(req.body);
-            console.log('51_course_control_req.file', req.files);
+            console.log('51_course_control_req.file', req.files.course_img);
+            console.log("video",req.file.course_video);
+            
 
             const ImageData = req.files
 
