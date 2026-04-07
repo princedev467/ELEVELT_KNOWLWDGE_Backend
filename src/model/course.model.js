@@ -33,9 +33,14 @@ const courseSchema = new mongoose.Schema(
                 type: String,
             }
         }],
-        preview_url: {
-            type: String
-        },
+        // preview_url: {
+        //     public_id: {
+        //         type: String,
+        //     },
+        //     url: {
+        //         type: String,
+        //     }
+        // },
         isActive: {
             type: Boolean,
             default: false

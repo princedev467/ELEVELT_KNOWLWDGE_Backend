@@ -57,8 +57,8 @@ const storage = multer.diskStorage({
 // });
 
 const upload = multer({ 
-  storage
-  // fileFilter: fileFilterVideo
+  storage:storage 
+
 })
 
 module.exports=upload;

@@ -18,8 +18,8 @@ router.get('/getAllCourse',(req, res, next) => {
    next();
 },course_controller.getAllCourses);
 
-router.post('/addCourse', upload.fields([{name:'course_img'}
-                                        ,{name:'course_video'}]) ,(req, res, next) => {
+
+router.post('/addCourse', upload.array('course_img') ,(req, res, next) => {
         // #swagger.tags = ['course']
     
     /*
@@ -51,8 +51,41 @@ router.post('/addCourse', upload.fields([{name:'course_img'}
   */
         next();
     },course_controller.addCourses)
+// router.post('/addCourse', upload.fields([{name:'course_img'}
+//                                         ,{name:'Preview_url',maxCount:1}]) ,(req, res, next) => {
+//         // #swagger.tags = ['course']
+    
+//     /*
+//     #swagger.consumes = ['multipart/form-data']  
+//     #swagger.parameters['name'] = {
+//       in: 'formData',
+//       type: 'string',
+//       required: 'true',
+//       description: 'course Name',
+//     },
+//     #swagger.parameters['description'] = {
+//       in: 'formData',
+//       type: 'string',
+//       required: 'true',
+//       description: 'course Description',
+//     },
+//     #swagger.parameters['course_img'] = {
+//       in: 'formData',
+//       type: 'file',
+//       required: 'true',
+//       description: 'course Image',
+//     }
+//        #swagger.parameters['category_id'] = {
+//       in: 'formData',
+//       type: 'text',
+//       description: 'category id',
+//     }
+    
+//   */
+//         next();
+//     },course_controller.addCourses)
 
-router.put('/updateCourse/:id',upload.single('course_img'),(req, res, next) => {
+router.put('/updateCourse/:id',upload.array('course_img'),(req, res, next) => {
         // #swagger.tags = ['course']
     
     /*
