@@ -19,36 +19,10 @@ router.get('/getCategory/:id',(req, res, next) => {
 
 
 
+router.post('/addCategory',validate(addCategory),upload.array('category_img'),Category_Controller.addCategories)
+ 
 
-router.post('/addCategory',validate(addCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
-        // #swagger.tags = ['category']
-    
-    /*
-    #swagger.consumes = ['multipart/form-data']  
-    #swagger.parameters['name'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Name',
-    },
-    #swagger.parameters['description'] = {
-      in: 'formData',
-      type: 'string',
-      required: 'true',
-      description: 'Category Description',
-    },
-    #swagger.parameters['category_img'] = {
-      in: 'formData',
-      type: 'file',
-      required: 'true',
-      description: 'Category Image',
-    }
-    
-  */
-        next();
-    },Category_Controller.addCategories);
-
-router.put('/updateCategory/:id',validate(updateCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
+router.put('/updateCategory/:id',validate(updateCategory),upload.array('category_img'),(req, res, next) => {
         // #swagger.tags = ['category']
     
     /*
@@ -72,6 +46,59 @@ router.put('/updateCategory/:id',validate(updateCategory), authentication(['user
   */
         next();
     },Category_Controller.updateCategories);
+
+// router.post('/addCategory',validate(addCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
+//         // #swagger.tags = ['category']
+    
+//     /*
+//     #swagger.consumes = ['multipart/form-data']  
+//     #swagger.parameters['name'] = {
+//       in: 'formData',
+//       type: 'string',
+//       required: 'true',
+//       description: 'Category Name',
+//     },
+//     #swagger.parameters['description'] = {
+//       in: 'formData',
+//       type: 'string',
+//       required: 'true',
+//       description: 'Category Description',
+//     },
+//     #swagger.parameters['category_img'] = {
+//       in: 'formData',
+//       type: 'file',
+//       required: 'true',
+//       description: 'Category Image',
+//     }
+    
+//   */
+//         next();
+//     },Category_Controller.addCategories);
+
+// router.put('/updateCategory/:id',validate(updateCategory), authentication(['user']),upload.single('category_img'),(req, res, next) => {
+//         // #swagger.tags = ['category']
+    
+//     /*
+//     #swagger.consumes = ['multipart/form-data']  
+//     #swagger.parameters['name'] = {
+//       in: 'formData',
+//       type: 'string',
+//       description: 'Category Name',
+//     },
+//     #swagger.parameters['description'] = {
+//       in: 'formData',
+//       type: 'string',
+//       description: 'Category Description',
+//     },
+//     #swagger.parameters['category_img'] = {
+//       in: 'formData',
+//       type: 'file',
+//       description: 'Category Image',
+//     }
+    
+//   */
+//         next();
+//     },Category_Controller.updateCategories);
 
 
 

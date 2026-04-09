@@ -10,20 +10,20 @@ const categorySchema = new mongoose.Schema(
         description: {
             type: String
         },
-        category_img: {
-            public_id: {   
+        category_img: [{
+            public_id: {
                 type: String,
             },
             url: {
                 type: String,
             }
-    
-        },
-        parent_category_id: { 
-            type: mongoose.Types.ObjectId,
-            ref: 'categories', 
-            default: null
-        },
+
+        }],
+        // parent_category_id: {
+        //     type: mongoose.Types.ObjectId,
+        //     ref: 'categories',
+        //     default: null
+        // },
         isActive: {
             type: Boolean,
             default: true

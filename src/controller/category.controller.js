@@ -55,17 +55,32 @@ const addCategories = async (req, res) => {
     //   return res.send(error.details)
       
     // }
-    console.log("req.body:", req.body, req.file);
+    console.log("req.body:", req.body, req.files);
 
-    console.log("req.user:", req.user);
+    // console.log("req.user:", req.user);
 
-    const obj = await updateCloudanrt(req.file.path, "category_img");
+            const ImageData = req.files
 
+            let uploadedImages = [];
+
+            for (const file of ImageData) {
+
+                  const obj = await updateCloudanrt(file.path, "category_img");
+
+                  uploadedImages.push({
+                        public_id: obj.public_id,
+                        url: obj.url
+                  });
+            }
+    // const obj = await updateCloudanrt(req.file.path, "category_img");
+
+    // console.log('obj',obj);
+    
       // const category = await categorysModel.create({ ...req.body, category_img: req.file.path });
 
     // console.log('category:', category);
 
-    const category = await categorysModel.create({ ...req.body, category_img: { 'public_id': obj.public_id, 'url': obj.url } });
+    const category = await categorysModel.create({ ...req.body, category_img: uploadedImages });
 
     console.log('category:', category);
 
@@ -91,24 +106,52 @@ const updateCategories = async (req, res) => {
 
     console.log("req.file:", req.file);
 
-    let updatedata = { ...req.body, category_img: { public_id: categoryData.category_img.public_id, url: categoryData.category_img.url } };
+    let updatedata = { ...req.body};
 
     console.log(updatedata);
 
 
-    if (req.file) {
-      // fs.unlink(categoryData.category_img, (err) => {
-      //   console.log(err);
+    // if (req.file) {
+    //   // fs.unlink(categoryData.category_img, (err) => {
+    //   //   console.log(err);
 
-      // })s
+    //   // })s
 
-      await deleteCloudanrt(categoryData?.category_img?.public_id);
+    //   await deleteCloudanrt(categoryData?.category_img?.public_id);
 
-      const obj = await updateCloudanrt(req.file.path, "category_img");
+    //   const obj = await updateCloudanrt(req.file.path, "category_img");
 
-      updatedata.category_img = { public_id: obj.public_id, url: obj.url }
-    }
+    //   updatedata.category_img = { public_id: obj.public_id, url: obj.url }
+    // }
+   if (req.files?.length > 0) {
+                  //old delete image
+                  for (const imagedel of categoryData.category_img) {
+                        await deleteCloudanrt(imagedel.public_id);
+                  }
 
+
+                  const ImageData = req.files
+                  let uploadedImages = [];
+                  //new update image
+                  for (const file of ImageData) {
+
+                        const obj = await updateCloudanrt(file.path, "category_img");
+
+
+                        uploadedImages.push({
+                              public_id: obj.public_id,
+                              url: obj.url
+                        });
+
+                        updatedata.category_img = uploadedImages;
+                  }
+
+
+                  console.log("uploadedImages", uploadedImages);
+
+            } else {
+                  updatedata.category_img = categoryData.category_img;
+            }
 
     const category = await categorysModel.findByIdAndUpdate(
       req.params.id,
@@ -138,8 +181,11 @@ const deleteCategories = async (req, res) => {
 
     const category = await categorysModel.findByIdAndDelete(req.params.id);
 
-    await deleteCloudanrt(categoryData?.category_img?.public_id);
+    // await deleteCloudanrt(categoryData?.category_img?.public_id);
 
+  for (const imagedel of categoryData.category_img) {
+                  await deleteCloudanrt(imagedel.public_id);
+            }
 
     console.log('category:-', category)
     if (!category) {

@@ -123,7 +123,7 @@ const updateCourses = async (req, res) => {
 
 
                   console.log("uploadedImages", uploadedImages);
-                  
+
             } else {
                   updatedata.course_img = courseData.course_img;
             }
@@ -159,9 +159,10 @@ const deleteCourses = async (req, res) => {
             console.log(courseData);
 
             const course = await coursesModel.findByIdAndDelete(req.params.id);
-
-            await deleteCloudanrt(courseData?.course_img?.public_id);
-
+            
+            for (const imagedel of courseData.course_img) {
+                  await deleteCloudanrt(imagedel.public_id);
+            }
 
             if (!course) {
 
