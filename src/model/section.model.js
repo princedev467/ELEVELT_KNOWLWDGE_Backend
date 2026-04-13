@@ -2,14 +2,14 @@ const { default: mongoose } = require("mongoose");
 
 const sectionSchema = new mongoose.Schema(
     {
-        Course_id: {
+        course: {
             type: mongoose.Types.ObjectId,
             ref: 'course',
 
         },
         name: {
             type: String,
-            unique: true,
+            // unique: true,
             trim: true
         },
         description: {

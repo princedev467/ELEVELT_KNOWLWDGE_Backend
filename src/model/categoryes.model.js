@@ -19,11 +19,11 @@ const categorySchema = new mongoose.Schema(
             }
 
         }],
-        // parent_category_id: {
-        //     type: mongoose.Types.ObjectId,
-        //     ref: 'categories',
-        //     default: null
-        // },
+        parent_category_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'categories',
+            default: null
+        },
         isActive: {
             type: Boolean,
             default: true
