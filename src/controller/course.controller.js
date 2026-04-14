@@ -42,16 +42,10 @@ const getAllCourses = async (req, res) => {
 }
 
 const addCourses = async (req, res) => {
-      // #swagger.tags = ['course']
-      // console.log(req.body);
-
       try {
-
             console.log("req.body", req.body);
             console.log('51_course_control_req.file', req.files);
-            // console.log("video",req.files.course_video);
-
-
+           
             const ImageData = req.files
 
             let uploadedImages = [];
@@ -87,7 +81,6 @@ const addCourses = async (req, res) => {
 }
 
 const updateCourses = async (req, res) => {
-      // #swagger.tags = ['course']
       try {
 
             const courseData = await coursesModel.findById(req.params.id)
@@ -153,7 +146,6 @@ const updateCourses = async (req, res) => {
 }
 
 const deleteCourses = async (req, res) => {
-      // #swagger.tags = ['course']
       try {
             const courseData = await coursesModel.findById(req.params.id);
             console.log(courseData);
@@ -180,26 +172,22 @@ const deleteCourses = async (req, res) => {
 }
 
 const activeCourses = async (req, res) => {
-      // #swagger.tags = ['course']
       try {
             console.log("Active's req.body:", req.body);
 
-            // const courseData = await coursesModel.findById(req.params.id);
-            // console.log(course);
 
             let updateData = { ...req.body }
-
-            // if (!courseData) {
-
-            //       return res.status(404).json({ data: null, message: 'Course not find' });
-            // }
-
 
             const course = await coursesModel.findByIdAndUpdate(
                   req.params.id,
                   updateData,
                   { new: true, runValidators: true }
             )
+
+            if (!course) {
+
+                  return res.status(404).json({ data: null, message: 'Course not Updated' });
+            }
 
             console.log(course);
 

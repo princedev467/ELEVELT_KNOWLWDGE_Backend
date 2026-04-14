@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const secrionsModel = require('../model/section.model');
 
 
@@ -11,7 +9,6 @@ const getSection = async (req, res) => {
 const getAllSection = async (req, res) => {
     console.log('terms Routes');
     try {
-        // const [rows] = await pool.query('SELECT * FROM terms')
         const section=await secrionsModel.find()
 
         console.log(section);
@@ -26,16 +23,9 @@ const getAllSection = async (req, res) => {
 
 const addSection = async (req, res) => {
     try {
-        const { name, description } = req.body
         console.log("req.body", req.body);
 
           const section=await secrionsModel.create(req.body)
-
-
-        // const [rows] = await pool.query('INSERT INTO terms(name, description) VALUES (?, ?)', [name, description])
-
-
-        // const [result]=await pool.query(`SELECT * FROM terms WHERE id=${rows.insertId}`);
 
         res.status(200).json({
             success: true,
@@ -55,14 +45,21 @@ const addSection = async (req, res) => {
 };
 
 const updateSection = async (req, res) => {
-   try {
+    try {
         console.log("id:", req.params.id);
-        //  const { name, description } = req.body
+        console.log("body:", req.body);
 
-const sectionData= await secrionsModel.findByIdAndUpdate(req.params.id)
-        // const [rows] = await pool.query('UPDATE terms SET name=?,description=? WHERE terms.id = ?', [name,description,req.params.id,])
+        const sectionData = await secrionsModel.findByIdAndUpdate(
+            req.params.id,
+            req.body,         
+            { new: true }        
+        );
 
-        // const [result]=await pool.query(`SELECT * FROM terms WHERE id=${rows.insertId}`);
+        
+            if (!sectionData) {
+
+                  return res.status(404).json({ data: null, message: 'section not updated' });
+            }
 
         res.status(200).json({
             success: true,
@@ -74,11 +71,9 @@ const sectionData= await secrionsModel.findByIdAndUpdate(req.params.id)
         res.status(500).json({
             success: false,
             data: [],
-            message: 'update section error' + error.message
+            message: 'update section error ' + error.message
         });
     }
-
-
 }
 
 const deleteSection = async (req, res) => {
@@ -88,12 +83,11 @@ const deleteSection = async (req, res) => {
         
 const sectionData= await secrionsModel.findByIdAndDelete(req.params.id)
      
+  if (!sectionData) {
 
-        // const [rows] = await pool.query('DELETE FROM terms WHERE terms.id = ?', [req.params.id])
-
-        //   const [result]=await pool.query(`SELECT * FROM terms WHERE id=${rows.insertId}`);
-
-        res.status(200).json({  
+                  return res.status(404).json({ data: null, message: 'section not deleted' });
+            }
+res.status(200).json({  
             success: true,
             message: "section delete successfully",
             data:null
