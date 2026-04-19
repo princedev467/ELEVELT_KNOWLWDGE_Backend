@@ -1,38 +1,38 @@
 const { default: mongoose } = require("mongoose");
 
 const quizContentSchema = new mongoose.Schema(
-    {
-     quiz: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'quiz',
-    required: true
-  },
-
-  question: {
-    type: String,
-   
-  },
-
-  options: [
-    {
-      type: String,
-     
-    }
-  ],
-
-  correctAnswer: {
-    type: String,
-   
-  },        
-     isActive: {
-            type: Boolean,
-            default: false
-        }
+  {
+    quiz: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'quiz',
+      required: true
     },
-    {
-        timestamps: true,
-        versionKey: false
+      question: {
+        type: String,
+
+      },
+
+      options: [
+        {
+          type: String,
+
+        }
+      ],
+
+      Answer: {
+        type: String,
+
+      },
+   
+    isActive: {
+      type: Boolean,
+      default: false
     }
+  },
+  {
+    timestamps: true,
+    versionKey: false
+  }
 );
 
 const quizContentModel = mongoose.model('quizContents', quizContentSchema);
