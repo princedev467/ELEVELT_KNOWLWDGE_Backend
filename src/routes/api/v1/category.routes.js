@@ -1,9 +1,10 @@
 const express=require('express');
 const { Category_Controller } = require('../../../controller/index.controller');
-const upload = require('../../../middleware/upload');
+// const upload = require('../../../middleware/upload');
 const { authentication } = require('../../../middleware/Auth');
 const validate = require('../../../middleware/validator');
 const { addCategory, updateCategory, deleteCategory } = require('../../../Validator/category.validator');
+const { uploadImage } = require('../../../middleware/upload');
 const router=express.Router();
 
 router.get('/getAllCategory',(req, res, next) => {
@@ -19,10 +20,10 @@ router.get('/getCategory/:id',(req, res, next) => {
 
 
 
-router.post('/addCategory',validate(addCategory),upload.array('category_img'),Category_Controller.addCategories)
+router.post('/addCategory',validate(addCategory),uploadImage.array('category_img'),Category_Controller.addCategories)
  
 
-router.put('/updateCategory/:id',validate(updateCategory),upload.array('category_img'),(req, res, next) => {
+router.put('/updateCategory/:id',validate(updateCategory),uploadImage.array('category_img'),(req, res, next) => {
         // #swagger.tags = ['category']
     
     /*

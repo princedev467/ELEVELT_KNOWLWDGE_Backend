@@ -24,41 +24,50 @@ const storage = multer.diskStorage({
 
 })
 
+const storageVideo = multer.diskStorage({
+    destination: function(req, file, cb){
+      const filePath =  path.join('public','video',file.fieldname)
 
-// const videoStorage = multer.diskStorage({
+    fs.mkdir(filePath,{recursive:true},(err)=>{
+            console.log(err)
+    })
+    cb(null, filePath);
 
-//   destination: function (req, file, cb) {
+        cb(null, './public/videoUpload');
+         // cb(null, '/tmp');
+    },
+    filename:function(req, file, cb){
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
 
-//     const filePath = path.join('public', 'video',file.fieldname);
+// file validation
 
-//     fs.mkdir(filePath, { recursive: true }, (err) => {
-//       if (err){ console.log(err)};
-//       cb(null, filePath);
-//     });
-//   },
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype ===  'image/png' || file.mimetype ===  'image/jpg'){
+        cb(null,true);
+    }else{
+        cb({message: 'Unsupported File Format'}, false)
+    }
+};
 
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + '-' + file.originalname);
-//   }
-// });
+const fileFilterVideo = (req, file, cb) => {
+    if(file.mimetype === 'video/mp4'){
+        cb(null,true);
+    }else{
+        cb({message: 'Unsupported File Format'}, false)
+    }
+};
 
-// // Video filter
-// const fileFilterVideo = (req, file, cb) => {
-//   if (file.mimetype === "video/mp4") {
-//     cb(null, true);
-//   } else {
-//     cb(new Error("Only MP4 videos allowed"), false);
-//   }
-// };
 
-// const uploadVideo = multer({
-//   storage: videoStorage,
-//   fileFilter: fileFilterVideo
-// });
+const uploadImage = multer({
+    storage: storage,
+    fileFilter: fileFilter
+});
 
-const upload = multer({ 
-  storage:storage 
+const uploadVideo = multer({
+    storage: storageVideo,
+    fileFilter: fileFilterVideo
+});
 
-})
-
-module.exports=upload;
+module.exports={uploadImage,uploadVideo};
