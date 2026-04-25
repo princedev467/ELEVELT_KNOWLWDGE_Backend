@@ -12,7 +12,6 @@ const cartRoutes=require('./cart.routes');
 const reviewRoutes=require('./review.routes');
 const categoryRoutes=require('./category.routes');
 const certificateRoutes=require('./certificate.routes');
-const contentRoutes=require('./content.routes');
 const couponRoutes=require('./coupon.routes');
 const quizRoutes=require('./quiz.routes');
 const quizcontentRoutes=require('./quizContent.routes');
@@ -20,8 +19,8 @@ const progressRoutes=require('./progress.routes');
 const resultRoutes=require('./result.routes');
 const sectionRoutes=require('./section.routes');
 const whistlistRoutes=require('./whistlist.routes');
-const usersRoutes=require('./users.routes')
-
+const usersRoutes=require('./users.routes');
+const contentRoutes=require('./content.routes');
 
 // http://localhost:2022/api/v1/
 router.use('/course',CourseRoutes);
