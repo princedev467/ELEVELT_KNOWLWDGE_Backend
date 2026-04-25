@@ -48,16 +48,22 @@ const addCourses = async (req, res) => {
            
             const ImageData = req.files
 
+            // console.log("ImageData",ImageData);
+            
             let uploadedImages = [];
 
             for (const file of ImageData) {
 
                   const obj = await updateCloudanrt(file.path, "Course_img");
 
+                  
                   uploadedImages.push({
                         public_id: obj.public_id,
                         url: obj.url
                   });
+
+                  console.log("obj",obj);
+                  
             }
 
 
@@ -75,7 +81,7 @@ const addCourses = async (req, res) => {
             return res.status(200).json({ data: course, meassage: 'Course  added successfully' })
 
       } catch (error) {
-            return res.status(400).json({ data: null, meassage: 'Course not added', error })
+            return res.status(500).json({ data: null, meassage: 'Course not added'+error.message })
       }
 
 }

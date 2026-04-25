@@ -43,13 +43,13 @@ const storageVideo = multer.diskStorage({
 
 // file validation
 
-const fileFilter = (req, file, cb) => {
-    if(file.mimetype === 'image/jpeg' || file.mimetype ===  'image/png' || file.mimetype ===  'image/jpg'){
-        cb(null,true);
-    }else{
-        cb({message: 'Unsupported File Format'}, false)
-    }
-};
+// const fileFilter = (req, file, cb) => {
+//     if(file.mimetype === 'image/jpeg' || file.mimetype ===  'image/png' || file.mimetype ===  'image/jpg'){
+//         cb(null,true);
+//     }else{
+//         cb({message: 'Unsupported File Format'}, false)
+//     }
+// };
 
 const fileFilterVideo = (req, file, cb) => {
     if(file.mimetype === 'video/mp4'){
@@ -61,8 +61,8 @@ const fileFilterVideo = (req, file, cb) => {
 
 
 const uploadImage = multer({
-    storage: storage,
-    fileFilter: fileFilter
+    storage
+
 });
 
 const uploadVideo = multer({
