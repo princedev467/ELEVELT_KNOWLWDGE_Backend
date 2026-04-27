@@ -38,7 +38,7 @@ const videoUpload=async(file,folder)=>{
     .upload(
                 file, {
                folder: folder,
-               resource_type:'video'
+               resource_type:'auto'
             }
             )
             .catch((error) => {
@@ -69,9 +69,28 @@ const deleteCloudanrt = async (public_id) => {
     });
 
 }
+const deleteVideo = async (publicId) => {
+  try {
+    const result = await cloudinary.uploader.destroy(publicId, {
+      resource_type: "auto"
+    },function (error, result) {
 
+
+        if (error) {
+            console.log('Error deleting image:', error);
+        } else {
+            console.log('Image deleted successfully:', result);
+        }});
+
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
     updateCloudanrt,
     deleteCloudanrt,
-    videoUpload
+    videoUpload,
+    deleteVideo
+  
 }

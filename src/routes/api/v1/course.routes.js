@@ -1,7 +1,7 @@
 const express = require('express');
 const router=express.Router();
 const { course_controller } = require('../../../controller/index.controller');
-const { uploadImage } = require('../../../middleware/upload');
+const upload = require('../../../middleware/upload');
 // const upload = require('../../../middleware/upload');
 
 
@@ -20,7 +20,7 @@ router.get('/getAllCourse',(req, res, next) => {
 },course_controller.getAllCourses);
 
 
-router.post('/addCourse',uploadImage.array('course_img') ,(req, res, next) => {
+router.post('/addCourse',upload.array('course_img') ,(req, res, next) => {
         // #swagger.tags = ['course']
     
     /*
@@ -86,7 +86,7 @@ router.post('/addCourse',uploadImage.array('course_img') ,(req, res, next) => {
 //         next();
 //     },course_controller.addCourses)
 
-router.put('/updateCourse/:id',uploadImage.array('course_img'),(req, res, next) => {
+router.put('/updateCourse/:id',upload.array('course_img'),(req, res, next) => {
         // #swagger.tags = ['course']
     
     /*

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { updateCloudanrt, deleteCloudanrt, videoUpload } = require("../service/cloudnary");
+const { updateCloudanrt, deleteCloudanrt, videoUpload, deleteVideo } = require("../service/cloudnary");
 const contentModel = require("../model/content.model");
 
 
@@ -52,7 +52,7 @@ const addContent = async (req, res) => {
 
             for (const file of ImageData) {
 
-                  const obj = await videoUpload(file.path, "Course_video");
+                  const obj = await videoUpload(file.path, "contentFile");
 
                   uploadedImages.push({
                         public_id: obj.public_id,
@@ -94,8 +94,8 @@ const updateContent = async (req, res) => {
             console.log(updatedata);
             if (req.files?.length > 0) {
                   //old delete image
-                  for (const imagedel of contentData.course_img) {
-                        await deleteCloudanrt(imagedel.public_id);
+                  for (const imagedel of contentData.contentFile) {
+                        await deleteVideo(imagedel.public_id);
                   }
 
 
@@ -104,7 +104,7 @@ const updateContent = async (req, res) => {
                   //new update image
                   for (const file of ImageData) {
 
-                        const obj = await updateCloudanrt(file.path, "Course_img");
+                        const obj = await videoUpload(file.path, "contentFile");
 
 
                         uploadedImages.push({
@@ -119,7 +119,7 @@ const updateContent = async (req, res) => {
                   console.log("uploadedImages", uploadedImages);
 
             } else {
-                  updatedata.course_img = contentData.course_img;
+                  updatedata.course_img = contentData.contentFile;
             }
 
             console.log("updatedata", updatedata);
@@ -153,8 +153,8 @@ const deleteContent = async (req, res) => {
 
             const content = await contentModel.findByIdAndDelete(req.params.id);
             
-            for (const imagedel of contentData.content_img) {
-                  await deleteCloudanrt(imagedel.public_id);
+            for (const imagedel of contentData.contentFile) {
+                  await deleteVideo(imagedel.public_id);
             }
 
             if (!content) {
