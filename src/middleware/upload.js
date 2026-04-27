@@ -26,6 +26,9 @@ const storage = multer.diskStorage({
 
 const storageVideo = multer.diskStorage({
     destination: function(req, file, cb){
+
+        console.log(file);
+        
       const filePath =  path.join('public','video',file.fieldname)
 
     fs.mkdir(filePath,{recursive:true},(err)=>{
@@ -66,8 +69,7 @@ const uploadImage = multer({
 });
 
 const uploadVideo = multer({
-    storage: storageVideo,
-    fileFilter: fileFilterVideo
+    storage:storageVideo
 });
 
 module.exports={uploadImage,uploadVideo};

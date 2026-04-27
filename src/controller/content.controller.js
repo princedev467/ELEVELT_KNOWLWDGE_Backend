@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary");
+const { updateCloudanrt, deleteCloudanrt, videoUpload } = require("../service/cloudnary");
 const contentModel = require("../model/content.model");
 
 
@@ -44,28 +44,28 @@ const getAllContent = async (req, res) => {
 const addContent = async (req, res) => {
       try {
             console.log("req.body", req.body);
-            //  console.log('51_course_control_req.file', req.files);
+             console.log('51_course_control_req.file', req.files);
            
-            // const ImageData = req.files
+            const ImageData = req.files
 
-            // let uploadedImages = [];
+            let uploadedImages = [];
 
-            // for (const file of ImageData) {
+            for (const file of ImageData) {
 
-            //       const obj = await updateCloudanrt(file.path, "Course_img");
+                  const obj = await videoUpload(file.path, "Course_video");
 
-            //       uploadedImages.push({
-            //             public_id: obj.public_id,
-            //             url: obj.url
-            //       });
-            // }
+                  uploadedImages.push({
+                        public_id: obj.public_id,
+                        url: obj.url
+                  });
+            }
 
 
             // console.log("uploadedImages", uploadedImages);
 
-            // const content = await contentModel.create({ ...req.body, content_img: uploadedImages });
+            const content = await contentModel.create({ ...req.body, contentFile: uploadedImages });
 
-            const content = await contentModel.create(req.body);
+            // const content = await contentModel.create(req.body);
             console.log('content:', content);
 
             if (!content) {

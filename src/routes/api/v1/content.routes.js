@@ -1,5 +1,6 @@
 const express=require('express');
 const { content_controller } = require('../../../controller/index.controller');
+const { uploadVideo } = require('../../../middleware/upload');
 const router=express.Router();
 
 
@@ -7,7 +8,7 @@ router.get('/getContent',content_controller.getContent);
 
 router.get('/getAllContent',content_controller.getAllContent);
 
-router.post('/addContent',content_controller.addContent);
+router.post('/addContent',uploadVideo.array('course_video'),content_controller.addContent);
 
 router.put('/updateContent/:id',content_controller.updateContent);
 
