@@ -112,14 +112,14 @@ const updateContent = async (req, res) => {
                               url: obj.url
                         });
 
-                        updatedata.course_img = uploadedImages;
+                        updatedata.contentFile = uploadedImages;
                   }
 
 
                   console.log("uploadedImages", uploadedImages);
 
             } else {
-                  updatedata.course_img = contentData.contentFile;
+                  updatedata.contentFile = contentData.contentFile;
             }
 
             console.log("updatedata", updatedata);
