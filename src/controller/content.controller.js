@@ -44,8 +44,8 @@ const getAllContent = async (req, res) => {
 const addContent = async (req, res) => {
       try {
             console.log("req.body", req.body);
-             console.log('51_course_control_req.file', req.files);
-           
+            console.log('51_course_control_req.file', req.files);
+
             const ImageData = req.files
 
             let uploadedImages = [];
@@ -56,7 +56,8 @@ const addContent = async (req, res) => {
 
                   uploadedImages.push({
                         public_id: obj.public_id,
-                        url: obj.url
+                        url: obj.url,
+                        resource_type: obj.resource_type 
                   });
             }
 
@@ -93,27 +94,26 @@ const updateContent = async (req, res) => {
 
             console.log(updatedata);
             if (req.files?.length > 0) {
-                  //old delete image
+                 
                   for (const imagedel of contentData.contentFile) {
-                        await deleteVideo(imagedel.public_id);
+                        await deleteVideo(imagedel.public_id,imagedel.resource_type);
                   }
 
 
                   const ImageData = req.files
                   let uploadedImages = [];
-                  //new update image
+                  
                   for (const file of ImageData) {
-
                         const obj = await videoUpload(file.path, "contentFile");
-
 
                         uploadedImages.push({
                               public_id: obj.public_id,
-                              url: obj.url
+                              url: obj.url,
+                              resource_type: obj.resource_type 
                         });
-
-                        updatedata.contentFile = uploadedImages;
                   }
+
+                  updatedata.contentFile = uploadedImages; 
 
 
                   console.log("uploadedImages", uploadedImages);
@@ -152,9 +152,9 @@ const deleteContent = async (req, res) => {
             console.log(contentData);
 
             const content = await contentModel.findByIdAndDelete(req.params.id);
-            
+
             for (const imagedel of contentData.contentFile) {
-                  await deleteVideo(imagedel.public_id);
+                  await deleteVideo(imagedel.public_id,imagedel.resource_type);
             }
 
             if (!content) {

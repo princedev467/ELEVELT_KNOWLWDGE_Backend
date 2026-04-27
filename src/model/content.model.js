@@ -23,7 +23,10 @@ const contentSchema = new mongoose.Schema(
             },
             url: {
                 type: String,
-            }
+            },
+              resource_type:{
+                type:String
+              }
         }],
         pdf:{
             type:String,
