@@ -28,8 +28,8 @@ const contentSchema = new mongoose.Schema(
                 type:String
               }
         }],
-        pdf:{
-            type:String,
+        order:{
+            type:String
         },
         
         isActive: {

@@ -35,11 +35,15 @@ const updateCloudanrt = async (file, folder) => {
 }
 
 const videoUpload=async(file,folder)=>{
+     const isPdf = file.mimetype === "application/pdf";
+     console.log(isPdf);
+
+
      const uploadResult = await cloudinary.uploader   
     .upload(
                 file, {
                folder: folder,
-               resource_type:'auto'
+               resource_type:isPdf?'raw':'auto'
             }
             )
             .catch((error) => {
@@ -71,22 +75,17 @@ const deleteCloudanrt = async (public_id) => {
     });
 
 }
-const deleteVideo = async (publicId,resource_type) => {
+const deleteVideo = async (publicId, resource_type ) => {
   try {
     const result = await cloudinary.uploader.destroy(publicId, {
       resource_type: resource_type
-    },function (error, result) {
+    });
 
+    console.log("Deleted successfully:", result);
+    return result;
 
-        if (error) {
-            console.log('Error deleting image:', error);
-        } else {
-            console.log('Image deleted successfully:', result);
-        }});
-
-    
   } catch (error) {
-    console.log(error);
+    console.log("Delete error:", error);
   }
 };
 module.exports = {
