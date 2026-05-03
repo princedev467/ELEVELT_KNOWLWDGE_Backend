@@ -15,7 +15,10 @@ const sectionSchema = new mongoose.Schema(
         description: {
             type: String
         },
-        
+         Instructor_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Instructor',
+        },
         isActive: {
             type: Boolean,
             default: false

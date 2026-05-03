@@ -17,7 +17,10 @@ const quizSchema = new mongoose.Schema(
             // unique: true,
             trim: true
         },
-        
+         Instructor_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Instructor',
+        },
         isActive: {
             type: Boolean,
             default: false

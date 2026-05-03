@@ -31,7 +31,10 @@ const contentSchema = new mongoose.Schema(
         order:{
             type:String
         },
-        
+         Instructor_id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Instructor',
+        },
         isActive: {
             type: Boolean,
             default: false
