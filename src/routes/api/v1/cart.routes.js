@@ -1,33 +1,17 @@
-const express=require('express')
+const express=require('express');
+const { cart_controller } = require('../../../controller/index.controller');
 const router=express.Router();
 
 
-router.get('/getcart',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
 
-router.get('/getAllcart',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
+router.get('/getcart',cart_controller.getCart);
 
-router.post('/addcart',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
+router.get('/getAllcart',cart_controller.getAllCart);
 
-      console.log(req.body);
-});
+router.post('/addcart',cart_controller.addCart);
 
-router.put('/updatecart/:id',(req,res)=>{
-   res.status(200).json({message:'update successfully'});
+router.put('/updatecart/:id',cart_controller.updateCart);
 
-    console.log(req.params.id);
-});
-
-router.delete('/deletecart/:id',(req,res)=>{
-//    onsole.log(req.query.id);
-    
-    res.status(200).json({message:'delete successfully'});
-
-    console.log(req.params.id); 
-});
+router.delete('/deletecart/:id',cart_controller.deleteCart);
 
 module.exports=router
