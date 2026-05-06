@@ -8,7 +8,7 @@ const getCart = async (req, res) => {
 const getAllCart = async (req, res) => {
     console.log('terms Routes');
     try {
-        const cart=await cartModel.find()
+        const cart = await cartModel.find()
 
         console.log(cart);
 
@@ -24,7 +24,7 @@ const addCart = async (req, res) => {
     try {
         console.log("req.body", req.body);
 
-          const cart=await cartModel.create(req.body)
+        const cart = await cartModel.create(req.body)
 
         res.status(200).json({
             success: true,
@@ -50,15 +50,15 @@ const updateCart = async (req, res) => {
 
         const cartData = await cartModel.findByIdAndUpdate(
             req.params.id,
-            req.body,         
-            { new: true }        
+            req.body,
+            { new: true }
         );
 
-        
-            if (!cartData) {
 
-                  return res.status(404).json({ data: null, message: 'cart not updated' });
-            }
+        if (!cartData) {
+
+            return res.status(404).json({ data: null, message: 'cart not updated' });
+        }
 
         res.status(200).json({
             success: true,
@@ -79,17 +79,21 @@ const deleteCart = async (req, res) => {
     try {
         console.log("id:", req.params.id);
 
-        
-const cartData= await cartModel.findByIdAndDelete(req.params.id)
-     
-  if (!cartData) {
+            const itemId = req.params.id;
 
-                  return res.status(404).json({ data: null, message: 'cart not deleted' });
-            }
-res.status(200).json({  
+            let cartItem=await cartModel.items.findById(itemId);
+            console.log("cartItem",cartItem);
+            
+        // const cartData = await cartModel?.findByIdAndDelete({"items._id":})
+
+        // if (!cartData) {
+
+        //     return res.status(404).json({ data: null, message: 'cart not deleted' });
+        // }
+        res.status(200).json({
             success: true,
-            message: "cart delete successfully",
-            data:null
+            message: "cart Items  delete successfully",
+            data: null
         });
 
 
@@ -97,7 +101,7 @@ res.status(200).json({
         res.status(500).json({
             success: false,
             data: [],
-            message: 'delete cart  Internal Server Error ' + error.message
+            message: 'delete cart Items  Internal Server Error ' + error.message
         });
     }
 
