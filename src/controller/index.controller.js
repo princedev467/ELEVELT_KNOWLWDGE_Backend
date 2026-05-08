@@ -7,3 +7,4 @@ module.exports.quiz_controller=require('./quiz.controller')
 module.exports.quizContent_controller=require('./quizContent.controller')
 module.exports.content_controller=require('./content.controller');
 module.exports.cart_controller=require('./cart.controller');
+module.exports.coupon_controller=require('./coupon.controller')
