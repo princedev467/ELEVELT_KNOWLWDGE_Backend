@@ -71,3 +71,7 @@ ELEVELT_KNOWLWDGE_Backend/
 ├── server.js
 ├── package.json
 └── README.md
+
+⚙️ Installation Guide
+1️⃣ Clone Repository
+git clone https://github.com/princedev467/ELEVELT_KNOWLWDGE_Backend.git
