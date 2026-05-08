@@ -76,34 +76,43 @@ const updateCart = async (req, res) => {
 }
 
 const deleteCart = async (req, res) => {
-    try {
-        console.log("id:", req.params.id);
+//     try {
+//         // console.log("id:", req.params.id);
 
-            const itemId = req.params.id;
+//            const{id1,id2}=req.params;
+//            console.log("id1",id1);
+           
+        
 
-            let cartItem=await cartModel.items.findById(itemId);
-            console.log("cartItem",cartItem);
-            
-        // const cartData = await cartModel?.findByIdAndDelete({"items._id":})
+//             let cartItem= await cartModel.findOne({"items._id": req.params.id});
+//             console.log("cartItem",cartItem);
 
-        // if (!cartData) {
+       
+        
 
-        //     return res.status(404).json({ data: null, message: 'cart not deleted' });
-        // }
-        res.status(200).json({
-            success: true,
-            message: "cart Items  delete successfully",
-            data: null
-        });
+//         if (!cartData) {
+
+//             return res.status(404).json({ data: null, message: 'cart not deleted' });
+//         }
+
+//     // let items  =  cartItem?.items?.findIndex((v)=>v._id=== req.params.id);
+
+//     // let filtercart=cartItem?.items?.splice(items,1);
+
+//         res.status(200).json({
+//             success: true,
+//             message: "cart Items  delete successfully",
+//             data: cartData
+//         });
 
 
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            data: [],
-            message: 'delete cart Items  Internal Server Error ' + error.message
-        });
-    }
+//     } catch (error) {
+//         res.status(500).json({
+//             success: false,
+//             data: [],
+//             message: 'delete cart Items  Internal Server Error ' + error.message
+//         });
+//     }
 
 }
 
