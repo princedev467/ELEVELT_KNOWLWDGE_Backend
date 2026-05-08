@@ -72,6 +72,82 @@ ELEVELT_KNOWLWDGE_Backend/
 ├── package.json
 └── README.md
 
-⚙️ Installation Guide
-1️⃣ Clone Repository
+# 🏁 Getting Started
+
+## Clone Repository
+
+```bash
 git clone https://github.com/princedev467/ELEVELT_KNOWLWDGE_Backend.git
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Start Development Server
+
+```bash
+npm start
+```
+# 🔑 Environment Variables
+
+Create `.env` file:
+
+```env
+PORT=your_port
+MONGODB_URL=your_mongodb_url
+ACCESSTOKEN_SECRET=your_accesstoken
+REFRESSTOKEN_SECRET=your_refresstoken
+Email=your_email
+Email_Pass=your_nodemailer_email_pass
+TWILIO_ACCSID=your_Twilio_token_access_id
+TWILIO_TOKEN=your_Twilio_token_secret_id
+GOOGLE_CLIENT_ID=your__google_client_id
+GOOGLE_CLIENT_SECRET=your__google_client_secret_id
+FACEBOOK_APP_ID=your__facebook_developeraccont_id
+FACEBOOK_APP_SECRET=your__facebook_developeraccont_secret_id
+CLOUD_NAME=your_Cloudnary_name
+CLOUD_API_KEY=your_Cloudnary_api_key
+CLOUD_API_SECRET=your_Cloudnary_secret_api_key
+
+```
+
+---
+# 🤝 Contributing
+
+```bash
+# Fork the project
+# Create feature branch
+git checkout -b feature/AmazingFeature
+
+# Commit changes
+git commit -m "feat: add AmazingFeature"
+
+# Push branch
+git push origin feature/AmazingFeature
+```
+
+---
+
+# 👨‍💻 Author
+
+<div align="center">
+
+### Prince Movaliya
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge\&logo=github\&logoColor=white)](https://github.com/princedev467)
+
+</div>
+
+---
+
+<div align="center">
+
+### ⭐ Star this repository if you found it helpful
+
+Made with ❤️ by **Prince Movaliya**
+
+</div>
+
