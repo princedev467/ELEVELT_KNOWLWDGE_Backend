@@ -108,7 +108,7 @@ const deleteCoupon = async (req, res) => {
         res.status(500).json({
             success: false,
             data: [],
-            message: 'delete Section  Internal Server Error ' + error.message
+            message: 'delete coupon  Internal Server Error ' + error.message
         });
     }
 
