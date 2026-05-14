@@ -1,33 +1,20 @@
-const express=require('express')
+const express=require('express');
+const { payment_controller } = require('../../../controller/index.controller');
 const router=express.Router();
 
 
-router.get('/getpayment',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
+router.get('/getpayment',payment_controller.getPayment);
 
-router.get('/getAllpayment',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
+router.get('/getAllpayment',payment_controller.getAllPayment);
 
-router.post('/addpayment',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
+router.post('/addpayment',payment_controller.addPayment);
 
-      console.log(req.body);
-});
+router.put('/updatepayment/:id',payment_controller.upadatePayment);
 
-router.put('/updatepayment/:id',(req,res)=>{
-   res.status(200).json({message:'update successfully'});
+router.delete('/deletepayment/:id',payment_controller.deletePayment);
 
-    console.log(req.params.id);
-});
 
-router.delete('/deletepayment/:id',(req,res)=>{
-//    onsole.log(req.query.id);
-    
-    res.status(200).json({message:'delete successfully'});
-
-    console.log(req.params.id); 
-});
+router.post("/create-order",payment_controller.createOrder);
+router.post("/verify-payment", payment_controller.verifyPayment);
 
 module.exports=router
