@@ -2,15 +2,18 @@ const { default: mongoose } = require("mongoose");
 
 const PaymentSchema = new mongoose.Schema(
     {
-        cartId: {
-            type: mongoose.Types.ObjectId,
-            ref: 'cart'
+        orderId:{
+            type:String
         },
+        paymentId:{
+            type:String
+        },
+
         transactionId: {
             type: String
         },
         amount: {
-            type: String
+            type: Number
         },
         status: {
             type: String,
