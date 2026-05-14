@@ -40,12 +40,11 @@ router.use('/cart',cartRoutes);
 router.use('/coupon',couponRoutes);
 router.use('/checkout',checkoutRoutes);
 router.use('/terms',termsRoutes);
-
+router.use('/payment',paymentRoutes);
 
 router.use('/card',cardRoutes);
 router.use('/blog',blogRoutes);
 router.use('/admission',admissionRoutes);
-router.use('/payment',paymentRoutes);
 router.use('/review',reviewRoutes);
 router.use('/certificate',certificateRoutes);
 router.use('/progress',progressRoutes);
