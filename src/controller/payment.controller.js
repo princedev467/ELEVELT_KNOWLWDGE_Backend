@@ -1,6 +1,24 @@
 const razorpay = require("../config/razorpay");
 const PaymentModel = require("../Model/Payment.model");
-const { validateWebhookSignature } = require('razorpay/dist/utils/razorpay-utils')
+const { validateWebhookSignature } = require('razorpay/dist/utils/razorpay-utils');
+
+
+const getAllPayment = async (req, res) => {
+    
+    try {
+        const Payment=await PaymentModel.find()
+
+        console.log(Payment);
+
+        res.status(200).json({ sucess: true, data: Payment, message: 'get Payment sucessfully' })
+
+    } catch (error) {
+        res.status(500).json({ sucess: false, data: [], message: 'getAll Payment error' + error.message })
+    }
+
+}
+
+
 const createOrder = async (req, res) => {
     try {
 
@@ -88,5 +106,6 @@ const verifyPayment = async (req, res) => {
 }
 module.exports = {
     createOrder,
-    verifyPayment
+    verifyPayment,
+    getAllPayment
 }
