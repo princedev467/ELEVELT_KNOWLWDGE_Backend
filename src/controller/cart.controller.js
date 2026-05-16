@@ -6,7 +6,7 @@ const getCart = async (req, res) => {
 }
 
 const getAllCart = async (req, res) => {
-    console.log('terms Routes');
+   
     try {
         const cart = await cartModel.find()
 
