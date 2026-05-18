@@ -25,6 +25,7 @@ const courseSchema = new mongoose.Schema(
         week: {
             type: Number
         },
+    
         course_img: [{
             public_id: {
                 type: String,

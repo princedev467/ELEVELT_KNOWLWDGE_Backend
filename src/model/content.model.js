@@ -31,6 +31,9 @@ const contentSchema = new mongoose.Schema(
         order:{
             type:String
         },
+        content_type:{
+            type:String
+        },
          Instructor_id: {
             type: mongoose.Types.ObjectId,
             ref: 'Instructor',
