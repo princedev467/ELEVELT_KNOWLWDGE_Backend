@@ -10,3 +10,4 @@ module.exports.cart_controller=require('./cart.controller');
 module.exports.coupon_controller=require('./coupon.controller');
 module.exports.checkout_controller=require('./checkout.controller');
 module.exports.payment_controller=require('./payment.controller');
+module.exports.enrollment_controller=require('./enrollment.controller')

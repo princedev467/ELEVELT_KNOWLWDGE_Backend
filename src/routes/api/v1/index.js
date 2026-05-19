@@ -13,7 +13,7 @@ const cartRoutes=require('./cart.routes');
 const couponRoutes=require('./coupon.routes');
 const checkoutRoutes=require('./checkout.routes');
 const termsRoutes=require('./Terms.routes');
-
+const enrollRoutes=require('./enroll.routes')
 
 const cardRoutes=require('./card.routes');
 const blogRoutes=require('./blog.routes');
@@ -41,6 +41,7 @@ router.use('/coupon',couponRoutes);
 router.use('/checkout',checkoutRoutes);
 router.use('/terms',termsRoutes);
 router.use('/payment',paymentRoutes);
+router.use('/enrollment',enrollRoutes);
 
 router.use('/card',cardRoutes);
 router.use('/blog',blogRoutes);
