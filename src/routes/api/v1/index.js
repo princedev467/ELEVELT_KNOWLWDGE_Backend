@@ -42,13 +42,13 @@ router.use('/checkout',checkoutRoutes);
 router.use('/terms',termsRoutes);
 router.use('/payment',paymentRoutes);
 router.use('/enrollment',enrollRoutes);
+router.use('/progress',progressRoutes);
 
 router.use('/card',cardRoutes);
 router.use('/blog',blogRoutes);
 router.use('/admission',admissionRoutes);
 router.use('/review',reviewRoutes);
 router.use('/certificate',certificateRoutes);
-router.use('/progress',progressRoutes);
 router.use('/result',resultRoutes);
 router.use('/whistlist',whistlistRoutes);
 

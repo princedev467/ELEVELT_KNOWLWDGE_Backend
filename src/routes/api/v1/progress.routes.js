@@ -1,33 +1,16 @@
-const express=require('express')
+const express=require('express');
+const { Progress_controller } = require('../../../controller/index.controller');
 const router=express.Router();
 
 
-router.get('/getProgress',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
+router.get('/getProgress',Progress_controller.getProgress);
 
-router.get('/getAllProgress',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
+router.get('/getAllProgress',Progress_controller.getAllProgress);
 
-router.post('/addProgress',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
+router.post('/addProgress',Progress_controller.addProgress);
 
-      console.log(req.body);
-});
+router.put('/updateProgress/:id',Progress_controller.updateProgress);
 
-router.put('/updateProgress/:id',(req,res)=>{
-   res.status(200).json({message:'update successfully'});
-
-    console.log(req.params.id);
-});
-
-router.delete('/deleteProgress/:id',(req,res)=>{
-//    onsole.log(req.query.id);
-    
-    res.status(200).json({message:'delete successfully'});
-
-    console.log(req.params.id); 
-});
+router.delete('/deleteProgress/:id',Progress_controller.deleteProgress);
 
 module.exports=router

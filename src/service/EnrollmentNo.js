@@ -7,33 +7,23 @@ const generateEnrollmentNo = async () => {
     // Last 2 digits of year
     const year = now.getFullYear().toString().slice(-2);
 
-    // Current date
-    const date = String(now.getDate()).padStart(2, '0');
+    // Count enrollments in current year
+    const yearStart = new Date(now.getFullYear(), 0, 1);
 
-    // Count today's enrollments
-    const todayStart = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-    );
-
-    const todayEnd = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1
-    );
+    const yearEnd = new Date(now.getFullYear() + 1, 0, 1);
 
     const count = await enrollModel.countDocuments({
         createdAt: {
-            $gte: todayStart,
-            $lt: todayEnd
+            $gte: yearStart,
+            $lt: yearEnd
         }
     });
 
-    // Sequence number
-    const orderNo = String(count + 1).padStart(3, '0');
+    // Order number
+    const orderNo = String(count + 1).padStart(3, "0");
 
-    return `EK${year}${date}${orderNo}`;
+    // Final enrollment number
+    return `EK${year}${orderNo}`;
 };
 
-module.exports=generateEnrollmentNo;
+module.exports = generateEnrollmentNo;
