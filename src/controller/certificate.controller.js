@@ -1,15 +1,38 @@
 const secrionsModel = require('../model/Certificate.model');
+const coursesModel = require('../model/course.model');
+const userModel = require('../model/users.model');
+const createCertificate = require('../service/certificate');
 
+const generateCertificate = async (req, res) => {
 
-const getSection = async (req, res) => {
+    const { course,user,grade,issue_date } = req.body;
 
+    // FIND COURSE
+    const courseData = await coursesModel.findById(course);
 
+    //FIND USER
+    const userData=await userModel.findById(user)
+    //findUser
+
+     if (!courseData && !userData) {           
+          return res.status(404).json({
+                success: false,
+                message: "Course and user not found"
+            });
+        }
+
+    const createCertifiacate = createCertificate({
+        username: userData.name,
+        courseName: courseData.name,
+        grade: grade,
+        issue_date: issue_date
+    })
 }
 
 const getAllSection = async (req, res) => {
     console.log('terms Routes');
     try {
-        const Certificate=await secrionsModel.find()
+        const Certificate = await secrionsModel.find()
 
         console.log(Certificate);
 
@@ -25,7 +48,7 @@ const addSection = async (req, res) => {
     try {
         console.log("req.body", req.body);
 
-          const Certificate=await secrionsModel.create(req.body)
+        const Certificate = await secrionsModel.create(req.body)
 
         res.status(200).json({
             success: true,
@@ -51,15 +74,15 @@ const updateSection = async (req, res) => {
 
         const sectionData = await secrionsModel.findByIdAndUpdate(
             req.params.id,
-            req.body,         
-            { new: true }        
+            req.body,
+            { new: true }
         );
 
-        
-            if (!sectionData) {
 
-                  return res.status(404).json({ data: null, message: 'Certificate not updated' });
-            }
+        if (!sectionData) {
+
+            return res.status(404).json({ data: null, message: 'Certificate not updated' });
+        }
 
         res.status(200).json({
             success: true,
@@ -80,17 +103,17 @@ const deleteSection = async (req, res) => {
     try {
         console.log("id:", req.params.id);
 
-        
-const sectionData= await secrionsModel.findByIdAndDelete(req.params.id)
-     
-  if (!sectionData) {
 
-                  return res.status(404).json({ data: null, message: 'Certificate not deleted' });
-            }
-res.status(200).json({  
+        const sectionData = await secrionsModel.findByIdAndDelete(req.params.id)
+
+        if (!sectionData) {
+
+            return res.status(404).json({ data: null, message: 'Certificate not deleted' });
+        }
+        res.status(200).json({
             success: true,
             message: "Certificate delete successfully",
-            data:null
+            data: null
         });
 
 
@@ -107,9 +130,9 @@ res.status(200).json({
 
 module.exports = {
     getAllSection,
-    getSection,
     addSection,
     updateSection,
-    deleteSection
+    deleteSection,
+    generateCertificate
 }
 

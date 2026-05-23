@@ -1,4 +1,6 @@
-const express=require('express')
+const express=require('express');
+const { Certificate_controller } = require('../../../controller/index.controller');
+const { authentication } = require('../../../middleware/Auth');
 const router=express.Router();
 
 
@@ -15,6 +17,8 @@ router.post('/addCertificate',(req,res)=>{
 
       console.log(req.body);
 });
+
+router.post('/createCertificate',Certificate_controller.generateCertificate);
 
 router.put('/updateCertificate/:id',(req,res)=>{
    res.status(200).json({message:'update successfully'});

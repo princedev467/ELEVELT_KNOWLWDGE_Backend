@@ -3,22 +3,23 @@ const { default: mongoose } = require("mongoose");
 const certificateSchema = new mongoose.Schema(
     {
 
-        course_id: {
+        course: {
             type: mongoose.Types.ObjectId,
             ref: 'course',
-
         },
-        user_id: {
-            type: mongoose.Types.ObjectId,
-            ref: 'user'
+        user: {
+           type: mongoose.Types.ObjectId,
+            ref: 'user',
         },
 
         issue_date: {
             type: Date,
             default: Date.now
         },
+        grade:{
+            type:String
+        }
 
-       
 
     },
     {
