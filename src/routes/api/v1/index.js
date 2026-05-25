@@ -14,15 +14,16 @@ const couponRoutes=require('./coupon.routes');
 const checkoutRoutes=require('./checkout.routes');
 const termsRoutes=require('./Terms.routes');
 const enrollRoutes=require('./enroll.routes')
-
-const cardRoutes=require('./card.routes');
-const blogRoutes=require('./blog.routes');
-const admissionRoutes=require('./admission.routes');
-const paymentRoutes=require('./payment.routes');
-const reviewRoutes=require('./review.routes');
 const certificateRoutes=require('./certificate.routes');
 const progressRoutes=require('./progress.routes');
-const resultRoutes=require('./result.routes');
+const paymentRoutes=require('./payment.routes');
+const reviewRoutes=require('./review.routes');
+
+
+// const cardRoutes=require('./card.routes');
+const blogRoutes=require('./blog.routes');
+// const admissionRoutes=require('./admission.routes');
+// const resultRoutes=require('./result.routes');
 const whistlistRoutes=require('./whistlist.routes');
 
 
@@ -43,13 +44,13 @@ router.use('/terms',termsRoutes);
 router.use('/payment',paymentRoutes);
 router.use('/enrollment',enrollRoutes);
 router.use('/progress',progressRoutes);
-
-router.use('/card',cardRoutes);
-router.use('/blog',blogRoutes);
-router.use('/admission',admissionRoutes);
-router.use('/review',reviewRoutes);
 router.use('/certificate',certificateRoutes);
-router.use('/result',resultRoutes);
+router.use('/review',reviewRoutes);
+
+// router.use('/card',cardRoutes);
+router.use('/blog',blogRoutes);
+// router.use('/admission',admissionRoutes);
+// router.use('/result',resultRoutes);
 router.use('/whistlist',whistlistRoutes);
 
 

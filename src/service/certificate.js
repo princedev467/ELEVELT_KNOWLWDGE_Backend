@@ -272,9 +272,19 @@ const createCertificate = async ({ username, courseName, grade, issueDate }) => 
     const pdf = pdfmake.createPdf(docDefinition);
     const filePath = path.join(__dirname, `../temp/${Date.now()}.pdf`);
     await pdf.write(filePath);
+    console.log('filePath',filePath);
+    
 
-    const result = await updateCloudanrt(filePath, { resource_type: 'raw' });
-    return result.secure_url;
+    const result = await updateCloudanrt(filePath, {
+         resource_type: 'raw',
+        folder: "certificates",  
+    public_id: `${userData.name}-${Date.now()}`,
+     });
+
+    console.log("result",result);
+    
+    // return result.secure_url;
+    return result.url
 };
 
 module.exports = createCertificate;

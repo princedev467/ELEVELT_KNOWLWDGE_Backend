@@ -12,4 +12,5 @@ module.exports.checkout_controller=require('./checkout.controller');
 module.exports.payment_controller=require('./payment.controller');
 module.exports.enrollment_controller=require('./enrollment.controller');
 module.exports.Progress_controller=require('./progress.controller');
-module.exports.Certificate_controller=require('./certificate.controller')
+module.exports.Certificate_controller=require('./certificate.controller');
+module.exports.Review_controller=require('./review.controller');

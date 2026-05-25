@@ -1,33 +1,16 @@
-const express=require('express')
+const express=require('express');
+const { Review_controller } = require('../../../controller/index.controller');
 const router=express.Router();
 
 
-router.get('/getReview',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
 
-router.get('/getAllReview',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
-});
 
-router.post('/addReview',(req,res)=>{
-    res.status(200).json({id:101,name:'prince'})
+router.get('/getAllReview',Review_controller.getAllReview);
 
-      console.log(req.body);
-});
+router.post('/addReview',Review_controller.addReview);
 
-router.put('/updateReview/:id',(req,res)=>{
-   res.status(200).json({message:'update successfully'});
+router.put('/updateReview/:id',Review_controller.updateReview);
 
-    console.log(req.params.id);
-});
-
-router.delete('/deleteReview/:id',(req,res)=>{
-//    onsole.log(req.query.id);
-    
-    res.status(200).json({message:'delete successfully'});
-
-    console.log(req.params.id); 
-});
+router.delete('/deleteReview/:id',Review_controller.deleteReview);
 
 module.exports=router

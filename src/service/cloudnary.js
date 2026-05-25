@@ -8,13 +8,13 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET // Click 'View API Keys' above to copy your API secret
 });
 
-const updateCloudanrt = async (file, folder) => {
+const updateCloudanrt = async (file,  options = {}) => {
     try {
         const uploadResult = await cloudinary.uploader
             .upload(
                 file, {
 
-                folder: folder
+                 ...options,
             }
             )
             .catch((error) => {

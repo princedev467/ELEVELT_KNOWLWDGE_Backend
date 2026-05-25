@@ -1,3 +1,4 @@
+const certificateModel = require('../model/Certificate.model');
 const secrionsModel = require('../model/Certificate.model');
 const coursesModel = require('../model/course.model');
 const userModel = require('../model/users.model');
@@ -5,34 +6,39 @@ const createCertificate = require('../service/certificate');
 const dayjs = require("dayjs");
 
 const generateCertificate = async (req, res) => {
+    const { course, user, grade, issue_date } = req.body;
 
-    const { course,user,grade,issue_date } = req.body;
-
-    // FIND COURSE
+    // 1. VALIDATE FIRST — before creating anything
     const courseData = await coursesModel.findById(course);
+    const userData = await userModel.findById(user);
 
-    //FIND USER
-    const userData=await userModel.findById(user)
-    //findUser
+    if (!courseData || !userData) {  // ⚠️ was && — should be ||
+        return res.status(404).json({
+            success: false,
+            message: "Course or user not found"
+        });
+    }
 
-     if (!courseData && !userData) {           
-          return res.status(404).json({
-                success: false,
-                message: "Course and user not found"
-            });
-        }
+    const Certificate = await certificateModel.create({
+        course,
+        user,
+        grade,
+        issue_date
+    });
 
-    const createCertifiacate = createCertificate({
+    const pdf = await createCertificate({
         username: userData.name,
         courseName: courseData.name,
         grade: grade,
-        issueDate: issue_date ||
-            dayjs().format(
-              "DD MMMM YYYY"
-            ),
-    })
-}
+        issueDate: issue_date || dayjs().format("DD MMMM YYYY"),
+    });
 
+  
+    console.log("pdf",pdf);
+    
+    // res.status(200).json({ sucess: true, data: pdf, message: 'pdf Generate sucessfully' })
+
+};
 const getAllSection = async (req, res) => {
     console.log('terms Routes');
     try {
