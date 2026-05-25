@@ -52,7 +52,7 @@ const addContent = async (req, res) => {
 
             for (const file of ImageData) {
 
-                  const obj = await videoUpload(file.path, "contentFile");
+                  const obj = await videoUpload(file, "contentFile");
 
                   uploadedImages.push({
                         public_id: obj.public_id,
@@ -83,68 +83,76 @@ const addContent = async (req, res) => {
 }
 
 const updateContent = async (req, res) => {
-      try {
+  try {
 
-            const contentData = await contentModel.findById(req.params.id)
+    const contentData = await contentModel.findById(req.params.id);
 
-            console.log("req.files", req.files);
-            console.log("contentData", contentData);
+    if (!contentData) {
+      return res.status(404).json({
+        data: null,
+        message: "Content not found"
+      });
+    }
 
-            let updatedata = { ...req.body };
+    let updatedata = { ...req.body };
 
-            console.log(updatedata);
-            if (req.files?.length > 0) {
-                 
-                  for (const imagedel of contentData.contentFile) {
-                        await deleteVideo(imagedel.public_id,imagedel.resource_type);
-                  }
+    if (req.files?.length > 0) {
 
+      // delete old files
+      if (contentData?.contentFile?.length > 0) {
 
-                  const ImageData = req.files
-                  let uploadedImages = [];
-                  
-                  for (const file of ImageData) {
-                        const obj = await videoUpload(file.path, "contentFile");
-
-                        uploadedImages.push({
-                              public_id: obj.public_id,
-                              url: obj.url,
-                              resource_type: obj.resource_type 
-                        });
-                  }
-
-                  updatedata.contentFile = uploadedImages; 
-
-
-                  console.log("uploadedImages", uploadedImages);
-
-            } else {
-                  updatedata.contentFile = contentData.contentFile;
-            }
-
-            console.log("updatedata", updatedata);
-
-            const content = await contentModel.findByIdAndUpdate(
-                  req.params.id,
-                  updatedata,
-                  { new: true, runValidators: true }
-            )
-
-            console.log(content);
-
-            if (!content) {
-                  return res.status(400).json({ data: null, meassage: "Content Not update" })
-            }
-
-            return res.status(200).json({ data: content, meassage: "Content update Sucessfully" })
-
-      } catch (error) {
-            return res.status(500).json({ data: null, meassage: 'Internal Server error in active Content' + error.message })
-
+        for (const file of contentData.contentFile) {
+          await deleteVideo(file.public_id, file.resource_type);
+        }
 
       }
 
-}
+      // upload new files
+      let uploadedFiles = [];
+
+      for (const file of req.files) {
+
+        const obj = await videoUpload(file, "contentFile");
+
+        uploadedFiles.push({
+          public_id: obj.public_id,
+          url: obj.secure_url,
+          resource_type: obj.resource_type
+        });
+
+      }
+
+      updatedata.contentFile = uploadedFiles;
+
+    } else {
+
+      updatedata.contentFile = contentData.contentFile;
+
+    }
+
+    const content = await contentModel.findByIdAndUpdate(
+      req.params.id,
+      updatedata,
+      { new: true, runValidators: true }
+    );
+
+    return res.status(200).json({
+      data: content,
+      message: "Content updated successfully"
+    });
+
+  } catch (error) {
+
+    console.log(error);
+
+    return res.status(500).json({
+      data: null,
+      message: "Internal Server Error",
+      error: error.message
+    });
+
+  }
+};
 
 const deleteContent = async (req, res) => {
       try {

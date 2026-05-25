@@ -2,6 +2,7 @@ const secrionsModel = require('../model/Certificate.model');
 const coursesModel = require('../model/course.model');
 const userModel = require('../model/users.model');
 const createCertificate = require('../service/certificate');
+const dayjs = require("dayjs");
 
 const generateCertificate = async (req, res) => {
 
@@ -25,7 +26,10 @@ const generateCertificate = async (req, res) => {
         username: userData.name,
         courseName: courseData.name,
         grade: grade,
-        issue_date: issue_date
+        issueDate: issue_date ||
+            dayjs().format(
+              "DD MMMM YYYY"
+            ),
     })
 }
 

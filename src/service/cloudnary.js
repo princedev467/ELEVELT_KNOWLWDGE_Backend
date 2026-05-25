@@ -13,7 +13,7 @@ const updateCloudanrt = async (file, folder) => {
         const uploadResult = await cloudinary.uploader
             .upload(
                 file, {
-               
+
                 folder: folder
             }
             )
@@ -26,7 +26,7 @@ const updateCloudanrt = async (file, folder) => {
         return {
             public_id: uploadResult.public_id,
             url: uploadResult.url
-           
+
         }
 
     } catch (error) {
@@ -34,32 +34,58 @@ const updateCloudanrt = async (file, folder) => {
     }
 }
 
-const videoUpload=async(file,folder)=>{
-     const isPdf = file.mimetype === "application/pdf";
-     console.log(isPdf);
+const videoUpload = async (file, folder) => {
+    try {
+        const isPdf = file.mimetype === 'application/pdf';
+        const isVideo = file.mimetype.startsWith('video');
+        // console.log('isPdf:', isPdf);
 
+        let uploadResult
+        if (isPdf) {
 
-     const uploadResult = await cloudinary.uploader   
-    .upload(
-                file, {
-               folder: folder,
-               resource_type:isPdf?'raw':'auto'
-            }
-            )
-            .catch((error) => {
-                console.log(error);
-            });
+            uploadResult = await cloudinary.uploader.upload(
+                file.path,
+                {
+                    folder,
+                    resource_type: 'raw'
+                }
+            );
 
-              console.log("video_uploadResult:", uploadResult);
+        } else if (isVideo) {
+
+            uploadResult = await cloudinary.uploader.upload(
+                file.path,
+                {
+                    folder,
+                    resource_type: 'video'
+                }
+            );
+
+        } else {
+
+            uploadResult = await cloudinary.uploader.upload(
+                file.path,
+                {
+                    folder,
+                    resource_type: 'image'
+                }
+            );
+        }
+
+        console.log('video_uploadResult:', uploadResult);
 
         return {
             public_id: uploadResult.public_id,
-            url: uploadResult.url, 
-            resource_type:uploadResult.resource_type
-        }
+            url: uploadResult.secure_url,
+            resource_type: uploadResult.resource_type,
+        };
 
-      
-}
+    } catch (error) {
+        console.log('Cloudinary File Upload Error:', error);
+        throw error;
+    }
+};
+
 
 const deleteCloudanrt = async (public_id) => {
 
@@ -75,23 +101,23 @@ const deleteCloudanrt = async (public_id) => {
     });
 
 }
-const deleteVideo = async (publicId, resource_type ) => {
-  try {
-    const result = await cloudinary.uploader.destroy(publicId, {
-      resource_type: resource_type
-    });
+const deleteVideo = async (publicId, resource_type) => {
+    try {
+        const result = await cloudinary.uploader.destroy(publicId, {
+            resource_type: resource_type
+        });
 
-    console.log("Deleted successfully:", result);
-    return result;
+        console.log("Deleted successfully:", result);
+        return result;
 
-  } catch (error) {
-    console.log("Delete error:", error);
-  }
+    } catch (error) {
+        console.log("Delete error:", error);
+    }
 };
 module.exports = {
     updateCloudanrt,
     deleteCloudanrt,
     videoUpload,
     deleteVideo
-  
+
 }
