@@ -63,6 +63,7 @@ next();
 
 }, user_controller.checkAuth);
 
+router.get('/getAlluser',user_controller.getAlluser);
 
 router.get('/createPdf',createPdf);
 //  ----->  Google Authentication  <-----   //

@@ -13,14 +13,14 @@ const fonts = {
 
 pdfmake.addFonts(fonts);
 
-const GOLD       = '#B8963E';
+const GOLD = '#B8963E';
 const GOLD_LIGHT = '#D4AF6A';
 const DARK_BROWN = '#2C1F0A';
-const MID_BROWN  = '#5A4A28';
-const MUTED      = '#7A6040';
-const LABEL      = '#9A7A3A';
+const MID_BROWN = '#5A4A28';
+const MUTED = '#7A6040';
+const LABEL = '#9A7A3A';
 const TITLE_GOLD = '#8A6820';
-const BG         = '#FFFDF6';
+const BG = '#FFFDF6';
 
 const formatDate = (isoDate) => {
     const d = new Date(isoDate);
@@ -30,8 +30,8 @@ const formatDate = (isoDate) => {
 // Diamond divider spanning full content width (495pt)
 const diamondDivider = (topMargin = 0, bottomMargin = 0) => ({
     canvas: [
-        { type: 'line', x1: 0,   y1: 5, x2: 220, y2: 5, lineWidth: 0.5, lineColor: GOLD_LIGHT },
-        { type: 'rect', x: 224,  y: 2,  w: 6, h: 6, color: GOLD, lineColor: GOLD },
+        { type: 'line', x1: 0, y1: 5, x2: 220, y2: 5, lineWidth: 0.5, lineColor: GOLD_LIGHT },
+        { type: 'rect', x: 224, y: 2, w: 6, h: 6, color: GOLD, lineColor: GOLD },
         { type: 'line', x1: 234, y1: 5, x2: 455, y2: 5, lineWidth: 0.5, lineColor: GOLD_LIGHT },
     ],
     margin: [0, topMargin, 0, bottomMargin],
@@ -272,17 +272,18 @@ const createCertificate = async ({ username, courseName, grade, issueDate }) => 
     const pdf = pdfmake.createPdf(docDefinition);
     const filePath = path.join(__dirname, `../temp/${Date.now()}.pdf`);
     await pdf.write(filePath);
-    console.log('filePath',filePath);
-    
+    console.log('filePath', filePath);
+
 
     const result = await updateCloudanrt(filePath, {
-         resource_type: 'raw',
-        folder: "certificates",  
-    public_id: `${userData.name}-${Date.now()}`,
-     });
+        resource_type: 'raw',
+        folder: "certificates",
+        // raw_convert: "aspose",
+        public_id: `${username}-${Date.now()}`,
+    });
 
-    console.log("result",result);
-    
+    console.log("result", result);
+
     // return result.secure_url;
     return result.url
 };

@@ -36,7 +36,7 @@ const generateCertificate = async (req, res) => {
   
     console.log("pdf",pdf);
     
-    // res.status(200).json({ sucess: true, data: pdf, message: 'pdf Generate sucessfully' })
+    res.status(200).json({ sucess: true, data: pdf, message: 'pdf Generate sucessfully' })
 
 };
 const getAllSection = async (req, res) => {

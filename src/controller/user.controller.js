@@ -7,7 +7,7 @@ const sendSMS = require("../service/twilio.js");
 const generateToken = async (_id) => {
 
     try {
-// #swagger.tags = ['user']
+        // #swagger.tags = ['user']
         const user = await userModel.findById(_id);
 
         const accessToken = jwt.sign(
@@ -296,7 +296,7 @@ const LogOut = async (req, res) => {
         const { _id } = req.body
 
         const user = await userModel.findByIdAndUpdate({ _id },
-            {  
+            {
                 $unset: {
                     refreshToken: 1
                 }
@@ -334,7 +334,7 @@ const LogOut = async (req, res) => {
 const forgetPassword = async (req, res) => {
 
     try {
-// #swagger.tags = ['user']
+        // #swagger.tags = ['user']
         const { email } = req.body
 
         const existUser = await userModel.findOne({ email })
@@ -433,7 +433,7 @@ const checkAuth = async (req, res) => {
 
 const resetPassword = async (req, res) => {
     try {
-// #swagger.tags = ['user']
+        // #swagger.tags = ['user']
         const { email, password } = req.body
 
         const existUser = await userModel.findOne({ email })
@@ -471,6 +471,24 @@ const resetPassword = async (req, res) => {
 
 }
 
+const getAlluser = async (req, res) => {
+
+    try {
+        const user = await userModel.find();
+
+        if (!user) {
+            return res.status(400).json({ data: null, meassage: 'user not get' })
+
+        }
+
+
+        return res.status(200).json({ data: user, meassage: 'user getAll data successful' })
+    } catch (error) {
+        return res.status(400).json({ data: null, meassage: 'Internal Server error in getAll user' + error.meassage })
+    }
+
+}
+
 module.exports = {
     register,
     userVerify,
@@ -480,5 +498,6 @@ module.exports = {
     LogOut,
     checkAuth,
     forgetPassword,
-    resetPassword
+    resetPassword,
+    getAlluser
 }

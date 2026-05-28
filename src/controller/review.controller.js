@@ -4,13 +4,13 @@ const reviewModel = require('../model/review.model');
 
 
 const getAllReview = async (req, res) => {
-    console.log('terms Routes');
+    
     try {
-        const review=await reviewModel.find()
+        const review=await reviewModel.find().populate("user", "name email");
 
         console.log(review);
 
-        res.status(200).json({ sucess: true, data: review, message: 'get sucessfully' })
+        res.status(200).json({ sucess: true, data: review, message: 'get review sucessfully' })
 
     } catch (error) {
         res.status(500).json({ sucess: false, data: [], message: 'getAll review error' + error.message })

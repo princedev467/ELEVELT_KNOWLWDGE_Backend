@@ -9,11 +9,11 @@ const reviewSchema = new mongoose.Schema(
         },
         user: {
            type: mongoose.Types.ObjectId,
-            ref: 'user',
+            ref: 'users',    
         },
-
         rating: {
             type: Number,
+            default:5
    
         },
         description:{

@@ -14,3 +14,4 @@ module.exports.enrollment_controller=require('./enrollment.controller');
 module.exports.Progress_controller=require('./progress.controller');
 module.exports.Certificate_controller=require('./certificate.controller');
 module.exports.Review_controller=require('./review.controller');
+module.exports.Whistlist_controller=require('./whistlist.controller');
