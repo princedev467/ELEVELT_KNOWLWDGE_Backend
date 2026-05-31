@@ -81,9 +81,9 @@ const updateblogSection = async (req, res) => {
     if (req.files?.length > 0) {
 
       // delete old files
-      if (blogData?.content?.length > 0) {
+      if (blogSectionData?.content?.length > 0) {
 
-        for (const file of blogData.image) {
+        for (const file of blogSectionData.image) {
           await deleteVideo(file.public_id, file.resource_type);
         }
 
@@ -108,7 +108,7 @@ const updateblogSection = async (req, res) => {
 
     } else {
 
-      updatedata.image = blogData.image;
+      updatedata.image = blogSectionData.image;
 
     }
 
