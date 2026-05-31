@@ -15,3 +15,5 @@ module.exports.Progress_controller=require('./progress.controller');
 module.exports.Certificate_controller=require('./certificate.controller');
 module.exports.Review_controller=require('./review.controller');
 module.exports.Whistlist_controller=require('./whistlist.controller');
+module.exports.blog_controller=require('./blog.controller');
+module.exports.blogSection_controller=require('./blogSection.controller');

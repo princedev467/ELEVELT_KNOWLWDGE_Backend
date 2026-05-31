@@ -19,13 +19,8 @@ const progressRoutes=require('./progress.routes');
 const paymentRoutes=require('./payment.routes');
 const reviewRoutes=require('./review.routes');
 const whistlistRoutes=require('./whistlist.routes');
-
-
-// const cardRoutes=require('./card.routes');
 const blogRoutes=require('./blog.routes');
-// const admissionRoutes=require('./admission.routes');
-// const resultRoutes=require('./result.routes');
-
+const blogSectionRoutes=require('./blogSection.routes')
 
 
 
@@ -47,11 +42,8 @@ router.use('/progress',progressRoutes);
 router.use('/certificate',certificateRoutes);
 router.use('/review',reviewRoutes);
 router.use('/whistlist',whistlistRoutes);
-
-// router.use('/card',cardRoutes);
 router.use('/blog',blogRoutes);
-// router.use('/admission',admissionRoutes);
-// router.use('/result',resultRoutes);
+router.use('/blogSection',blogSectionRoutes);
 
 
 
