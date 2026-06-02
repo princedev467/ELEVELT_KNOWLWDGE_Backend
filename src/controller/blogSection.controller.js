@@ -116,7 +116,7 @@ const updateblogSection = async (req, res) => {
       req.params.id,
       updatedata,
       { new: true, runValidators: true }
-    );
+    ).populate('blog');
 
     return res.status(200).json({
       data: blogSection,

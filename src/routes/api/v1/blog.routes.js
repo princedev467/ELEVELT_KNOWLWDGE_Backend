@@ -13,11 +13,11 @@ router.get('/getblog',(req,res)=>{
 
 router.get('/getAllblog',blog_controller.getAllblog);
 
-router.post('/addblog',upload.array('blog'),blog_controller.addblog)
+router.post('/addblog',upload.array('content'),blog_controller.addblog)
 
 
 
-router.put('/updateblog/:id',upload.array('blog'),blog_controller.updateblog)
+router.put('/updateblog/:id',upload.array('content'),blog_controller.updateblog)
 
 router.delete('/deleteblog/:id',blog_controller.deleteblog)
 

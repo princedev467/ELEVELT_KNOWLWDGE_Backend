@@ -14,6 +14,9 @@ const blogSchema = new mongoose.Schema({
             type: String,
         }
     }],
+    text: {
+        type: String
+    },
     title: {
         type: String
     },
@@ -21,7 +24,8 @@ const blogSchema = new mongoose.Schema({
         type: String
     },
     tag: {
-        type: String
+        type: mongoose.Types.ObjectId,
+        ref: 'tag',
     },
     description: {
         type: String

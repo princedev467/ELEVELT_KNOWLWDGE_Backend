@@ -4,7 +4,6 @@ const blogsectionSchema = new mongoose.Schema({
     blog: {
         type: mongoose.Types.ObjectId,
         ref: 'blog',
-        required: true,
     },
     heading:
     {

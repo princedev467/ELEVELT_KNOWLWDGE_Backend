@@ -17,3 +17,4 @@ module.exports.Review_controller=require('./review.controller');
 module.exports.Whistlist_controller=require('./whistlist.controller');
 module.exports.blog_controller=require('./blog.controller');
 module.exports.blogSection_controller=require('./blogSection.controller');
+module.exports.tag_controller=require('./tag.controller');

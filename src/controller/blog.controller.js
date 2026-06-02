@@ -5,7 +5,7 @@ const BlogSectionModel = require("../model/blogSection.model");
 
 const getAllblog = async (req, res) => {
   try {
-    const blog = await blogModel.find().populate('instructor', 'name email');
+    const blog = await blogModel.find().populate('instructor', 'name email').populate('tag');
 
     if (!blog) {
       res.status(400).json({
