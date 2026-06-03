@@ -22,6 +22,8 @@ const whistlistRoutes=require('./whistlist.routes');
 const blogRoutes=require('./blog.routes');
 const blogSectionRoutes=require('./blogSection.routes');
 const TagRoutes=require('./tag.routes');
+const BlogLikesRoutes=require('./blogLikes.routes');
+
 
 
 
@@ -45,6 +47,7 @@ router.use('/review',reviewRoutes);
 router.use('/whistlist',whistlistRoutes);
 router.use('/blog',blogRoutes);
 router.use('/blogSection',blogSectionRoutes);
+router.use('/blogLikes',BlogLikesRoutes);
 router.use('/tag',TagRoutes);
 
 
