@@ -164,10 +164,32 @@ const deleteblog = async (req, res) => {
 
 }
 
+const viewBlog = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const blog = await blogModel.findByIdAndUpdate(
+      id,
+      { $inc: { views: 1 } },  // increment by 1
+      { new: true }
+    );
+
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+
+    res.status(200).json({ success: true, views: blog.views });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 
 module.exports = {
   getAllblog,
   addblog,
   updateblog,
-  deleteblog
+  deleteblog,
+  viewBlog
 }

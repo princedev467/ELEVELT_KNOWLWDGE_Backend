@@ -19,3 +19,5 @@ module.exports.blog_controller=require('./blog.controller');
 module.exports.blogSection_controller=require('./blogSection.controller');
 module.exports.tag_controller=require('./tag.controller');
 module.exports.blogLike_controller=require('./blogLike.controller');
+module.exports.blogComment_controller=require('./blogComment.controller');
+

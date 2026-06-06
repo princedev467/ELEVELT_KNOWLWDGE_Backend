@@ -10,8 +10,7 @@ const contentSchema = new mongoose.Schema(
         section: {
             type: mongoose.Types.ObjectId,
             ref: 'section',
-
-        },
+     },
         name: {
             type: String,
             // unique: true,

@@ -15,7 +15,7 @@ router.get('/getAllblog',blog_controller.getAllblog);
 
 router.post('/addblog',upload.array('content'),blog_controller.addblog)
 
-
+router.patch('/viewBlog/:id',blog_controller.viewBlog)
 
 router.put('/updateblog/:id',upload.array('content'),blog_controller.updateblog)
 

@@ -23,6 +23,8 @@ const blogRoutes=require('./blog.routes');
 const blogSectionRoutes=require('./blogSection.routes');
 const TagRoutes=require('./tag.routes');
 const BlogLikesRoutes=require('./blogLikes.routes');
+const BlogCommentRoutes=require('./blogComment.routes');
+
 
 
 
@@ -48,6 +50,7 @@ router.use('/whistlist',whistlistRoutes);
 router.use('/blog',blogRoutes);
 router.use('/blogSection',blogSectionRoutes);
 router.use('/blogLikes',BlogLikesRoutes);
+router.use('/blogComment',BlogCommentRoutes);
 router.use('/tag',TagRoutes);
 
 
