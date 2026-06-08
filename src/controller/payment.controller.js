@@ -44,6 +44,8 @@ const createOrder = async (req, res) => {
             purchased_courses: req.body.purchased_courses
         });
 
+        
+        
         res.status(200).json({
             success: true,
             data: order,

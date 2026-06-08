@@ -3,6 +3,7 @@ const { user_controller } = require('../../../controller/index.controller');
 const passport = require('passport');
 const { generateToken } = require('../../../controller/user.controller');
 const createPdf = require('../../../service/pdfMake');
+const upload = require('../../../middleware/upload');
 const router = express.Router();
 
 router.post('/register',(req,res,next)=>{ 
@@ -26,12 +27,17 @@ next();
 
 }, user_controller.userVerify);
 
+router.put('/editProfile/:id',upload.array('PFP'), user_controller.editProfile);
+
+
+
 router.post('/forgetPassword', (req,res,next)=>{ 
      // #swagger.tags = ['User']
 
 next();
 
 },user_controller.forgetPassword)
+
 
 
 router.post('/resetPassword', (req,res,next)=>{ 

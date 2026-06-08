@@ -22,12 +22,31 @@ const userSchema = new mongoose.Schema(
             default:'user'
         },
         mobile_no:{
-             type: String
+             type: Number
             
         },
         DOB: {
+            type: String             
+        },
+       PFP: [{
+            public_id: {
+                type: String,
+            },
+            url: {
+                type: String,
+            }
+        }],
+         facebookID: {
             type: String
-             
+        },
+        twitterID : {
+            type : String
+        },
+        linkedInID : {
+            type: String
+        },
+        about:{
+            type:String
         },
         google_id:{
              type: String

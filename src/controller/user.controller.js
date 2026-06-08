@@ -3,6 +3,7 @@ const userModel = require("../model/users.model")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const sendSMS = require("../service/twilio.js");
+const { updateCloudanrt, deleteCloudanrt } = require("../service/cloudnary.js");
 
 const generateToken = async (_id) => {
 
@@ -489,6 +490,71 @@ const getAlluser = async (req, res) => {
 
 }
 
+const editProfile = async (req, res) => {
+    try {
+        const userExites = await userModel.findById(req.params.id);
+
+        if (!userExites) {
+            return res.status(404).json({
+                sucess: false,
+                data: null,
+                Message: "User Not Found",
+            });
+        }
+
+        let updatedata = req.body;
+
+        if (req.files?.length > 0) {
+            for (const imagedel of userExites.PFP) {
+                await deleteCloudanrt(imagedel.public_id);
+            }
+
+
+            const ImageData = req.files
+            let uploadedImages = [];
+            //new update image
+            for (const file of ImageData) {
+
+                const obj = await updateCloudanrt(file.path, "PFP");
+
+
+                uploadedImages.push({
+                    public_id: obj.public_id,
+                    url: obj.url
+                });
+
+                updatedata.PFP = uploadedImages;
+            }
+
+
+            console.log("uploadedImages", uploadedImages);
+
+        } else {
+            updatedata.PFP = userExites.PFP;
+        }
+
+
+        const user = await userModel.findByIdAndUpdate(
+            req.params.id,
+            updatedata,
+            { new: true, runValidators: true }
+        )
+
+        return res.status(200).json({
+            sucess: true,
+            data: user,
+            Message: "Profile Updated Successfully",
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            sucess: false,
+            data: null,
+            Message: "Internal Server Error : " + error.message,
+        });
+    }
+};
+
 module.exports = {
     register,
     userVerify,
@@ -499,5 +565,6 @@ module.exports = {
     checkAuth,
     forgetPassword,
     resetPassword,
-    getAlluser
+    getAlluser,
+    editProfile
 }
