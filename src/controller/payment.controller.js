@@ -1,6 +1,6 @@
 const razorpay = require("../config/razorpay");
 const enrollModel = require("../model/enrollment.model");
-const PaymentModel = require("../model/Payment.model");
+const PaymentModel = require("../model/payment.model");
 const { validateWebhookSignature } = require('razorpay/dist/utils/razorpay-utils');
 const generateEnrollmentNo = require("../service/EnrollmentNo");
 
