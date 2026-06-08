@@ -10,7 +10,7 @@ const getAllCart = async (req, res) => {
     try {
         const cart = await cartModel.find()
 
-        console.log(cart);
+        // console.log(cart);
 
         res.status(200).json({ sucess: true, data: cart, message: 'get  cart sucessfully' })
 
