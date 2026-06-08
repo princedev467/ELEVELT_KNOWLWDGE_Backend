@@ -11,7 +11,7 @@ const generateCertificate = async (req, res) => {
     const courseData = await coursesModel.findById(course);
     const userData = await userModel.findById(user);
 
-    if (!courseData || !userData) {  // ⚠️ was && — should be ||
+    if (!courseData || !userData) { 
         return res.status(404).json({
             success: false,
             message: "Course or user not found"
