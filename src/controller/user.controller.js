@@ -512,7 +512,6 @@ const editProfile = async (req, res) => {
 
             const ImageData = req.files
             let uploadedImages = [];
-            //new update image
             for (const file of ImageData) {
 
                 const obj = await updateCloudanrt(file.path, "PFP");
