@@ -1,4 +1,4 @@
-const certificateModel = require('../model/certificate.model');
+const certificateModel = require('../model/Certificate.model');
 const coursesModel = require('../model/course.model');
 const userModel = require('../model/users.model');
 const createCertificate = require('../service/certificate');
