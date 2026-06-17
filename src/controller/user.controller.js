@@ -52,16 +52,98 @@ const register = async (req, res) => {
 
         // sendSMS(mobile_no,OTP)
 
-
         await transporter.sendMail({
-            from: `"prince" <${process.env.Email}>`,
+            from: `"ELEVELT KNOWLEDGE" <${process.env.Email}>`,
             to: email,
-            subject: "Verify Your Email",
-            text: "Verify Your Email",
-            html: `<h3>your OTP is ${OTP} </h3>`,
+            subject: "Verify Your Email - ELEVELT KNOWLEDGE",
+            html: `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Email Verification</title>
+    </head>
+    <body style="margin:0; padding:0; background:#f4f7fc; font-family:Arial, sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="center" style="padding:40px 20px;">
+            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+
+              <!-- Header -->
+              <tr>
+                <td align="center" style="background:#2563eb; padding:30px;">
+                  <img
+                    src="YOUR_LOGO_URL"
+                    alt="ELEVELT KNOWLEDGE"
+                    width="80"
+                    style="display:block; margin-bottom:15px;"
+                  />
+                  <h1 style="color:#ffffff; margin:0; font-size:28px;">
+                    ELEVELT KNOWLEDGE
+                  </h1>
+                  <p style="color:#dbeafe; margin-top:8px;">
+                    Learning Management System
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Body -->
+              <tr>
+                <td style="padding:40px 30px; text-align:center;">
+                  <h2 style="color:#1f2937; margin-bottom:15px;">
+                    Verify Your Email
+                  </h2>
+
+                  <p style="color:#6b7280; font-size:16px; line-height:1.6;">
+                    Thank you for joining ELEVELT KNOWLEDGE.
+                    Please use the OTP below to verify your email address.
+                  </p>
+
+                  <div style="
+                    display:inline-block;
+                    background:#eff6ff;
+                    border:2px dashed #2563eb;
+                    border-radius:10px;
+                    padding:18px 35px;
+                    margin:25px 0;
+                  ">
+                    <span style="
+                      font-size:36px;
+                      font-weight:bold;
+                      letter-spacing:8px;
+                      color:#2563eb;
+                    ">
+                      ${OTP}
+                    </span>
+                  </div>
+
+                 
+
+                  <p style="color:#6b7280; font-size:14px; margin-top:25px;">
+                    If you didn't request this verification,
+                    you can safely ignore this email.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td align="center" style="background:#f9fafb; padding:20px;">
+                  <p style="margin:0; color:#6b7280; font-size:13px;">
+                    © ${new Date().getFullYear()} ELEVELT KNOWLEDGE.
+                    All rights reserved.
+                  </p>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `
         });
-
-
 
         const userData = await userModel.findOne({ email }).select('-password -OTP');
 
@@ -353,13 +435,102 @@ const forgetPassword = async (req, res) => {
 
         const OTP = Math.floor(100000 + Math.random() * 900000).toString();
 
-        await transporter.sendMail({
-            from: `"prince" <${process.env.Email}>`,
-            to: email,
-            subject: "Verify Your Email",
-            text: "Verify Your Email",
-            html: `<h3>your OTP is ${OTP} </h3>`,
-        });
+ await transporter.sendMail({
+from: `"ELEVELT KNOWLEDGE" <${process.env.Email}>`,
+to: email,
+subject: "Reset Your Password - ELEVELT KNOWLEDGE",
+html: `
+
+  <!DOCTYPE html>
+
+  <html>
+  <body style="margin:0;padding:0;background:#f4f7fc;font-family:Arial,sans-serif;">
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" style="padding:40px 20px;">
+      
+      <table width="600" cellpadding="0" cellspacing="0"
+        style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
+        <tr>
+          <td align="center" style="background:#2563eb;padding:30px;">
+            <h1 style="color:#ffffff;margin:0;font-size:28px;">
+              ELEVELT KNOWLEDGE
+            </h1>
+            <p style="color:#dbeafe;margin-top:8px;">
+              Password Reset Request
+            </p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:40px 30px;text-align:center;">
+
+            <h2 style="color:#1f2937;margin-bottom:15px;">
+              Reset Your Password
+            </h2>
+
+            <p style="color:#6b7280;font-size:16px;line-height:1.6;">
+              We received a request to reset your password.
+              Please use the OTP below to continue.
+            </p>
+
+            <div style="
+              display:inline-block;
+              background:#eff6ff;
+              border:2px dashed #2563eb;
+              border-radius:10px;
+              padding:18px 35px;
+              margin:25px 0;
+            ">
+              <span style="
+                font-size:36px;
+                font-weight:bold;
+                letter-spacing:8px;
+                color:#2563eb;
+              ">
+                ${OTP}
+              </span>
+            </div>
+
+            <p style="color:#ef4444;font-size:14px;">
+              This OTP is valid for 5 minutes.
+            </p>
+
+            <p style="color:#6b7280;font-size:14px;margin-top:20px;">
+              If you did not request this password reset,
+              please ignore this email. Your account remains secure.
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td align="center" style="background:#f9fafb;padding:20px;">
+            <p style="margin:0;color:#6b7280;font-size:13px;">
+              © ${new Date().getFullYear()} ELEVELT KNOWLEDGE. All rights reserved.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+
+  </body>
+  </html>
+  `,
+});
+
+
 
         existUser.OTP = OTP;
 

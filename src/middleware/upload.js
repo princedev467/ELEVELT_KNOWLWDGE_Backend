@@ -12,9 +12,9 @@ const storage = multer.diskStorage({
     fs.mkdir(filePath,{recursive:true},(err)=>{
             console.log(err)
     })
-    // cb(null, filePath);
+    cb(null, filePath);
 
-    cb(null, '/tmp');
+    // cb(null, '/tmp');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)

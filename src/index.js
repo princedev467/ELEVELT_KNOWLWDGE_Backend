@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 app.use(cors({
     origin: 'https://elevelt-knowlwdge-frontend.vercel.app',
-    //   origin: '  http://localhost:5173',
+    //   origin: 'http://localhost:5173',
     optionsSuccessStatus: 200,
     credentials:true
 }))
@@ -39,6 +39,7 @@ app.use(cors({
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1', routes);
+
 
 // app.listen(process.env.PORT, () => {
 //     console.log(`this port started at ${process.env.PORT}`);
