@@ -5,38 +5,48 @@ const createCertificate = require('../service/certificate');
 const dayjs = require("dayjs");
 
 const generateCertificate = async (req, res) => {
+  try {
     const { course, user, grade, issue_date } = req.body;
 
-    // 1. VALIDATE FIRST — before creating anything
     const courseData = await coursesModel.findById(course);
     const userData = await userModel.findById(user);
 
-    if (!courseData || !userData) { 
-        return res.status(404).json({
-            success: false,
-            message: "Course or user not found"
-        });
+    if (!courseData || !userData) {
+      return res.status(404).json({
+        success: false,
+        message: "Course or user not found",
+      });
     }
 
     const Certificate = await certificateModel.create({
-        course,
-        user,
-        grade,
-        issue_date
+      course,
+      user,
+      grade,
+      issue_date,
     });
 
     const pdf = await createCertificate({
-        username: userData.name,
-        courseName: courseData.name,
-        grade: grade,
-        issueDate: issue_date || dayjs().format("DD MMMM YYYY"),
+      username: userData.name,
+      courseName: courseData.name,
+      grade,
+      issueDate: issue_date || dayjs().format("DD MMMM YYYY"),
     });
 
-  
-    console.log("pdf",pdf);
-    
-    res.status(200).json({ sucess: true, data: pdf, message: 'pdf Generate sucessfully' })
+    console.log("PDF:", pdf);
 
+    res.status(200).json({
+      success: true,
+      data: pdf,
+      message: "PDF generated successfully",
+    });
+  } catch (error) {
+    console.error("Certificate Error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 // const getAllSection = async (req, res) => {
 //     console.log('terms Routes');
