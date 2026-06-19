@@ -4,10 +4,10 @@ const { updateCloudanrt } = require("./cloudnary");
 
 const fonts = {
     Roboto: {
-        normal: './public/fonts/Roboto-Regular.ttf',
-        bold: './public/fonts/Roboto-Medium.ttf',
-        italics: './public/fonts/Roboto-Italic.ttf',
-        bolditalics: './public/fonts/Roboto-BoldItalic.ttf'
+        normal: path.join(__dirname, "../public/fonts/Roboto-Regular.ttf"),
+        bold: path.join(__dirname, "../public/fonts/Roboto-Medium.ttf"),
+        italics: path.join(__dirname, "../public/fonts/Roboto-Italic.ttf"),
+        bolditalics: path.join(__dirname, "../public/fonts/Roboto-MediumItalic.ttf"),
     }
 };
 
