@@ -7,7 +7,7 @@ const fonts = {
         normal: './public/fonts/Roboto-Regular.ttf',
         bold: './public/fonts/Roboto-Medium.ttf',
         italics: './public/fonts/Roboto-Italic.ttf',
-        bolditalics: './public/fonts/Roboto-MediumItalic.ttf'
+        bolditalics: './public/fonts/Roboto-BoldItalic.ttf'
     }
 };
 
