@@ -1,19 +1,24 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "src/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/public/(.*)",  
-            "dest": "/public/$1"
-        },
-        {
-            "src": "/(.*)", 
-            "dest": "/src/index.js"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "functions": {
+    "src/index.js": {
+      "includeFiles": "public/fonts/**"
+    }
+  },
+  "routes": [
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/index.js"
+    }
+  ]
 }

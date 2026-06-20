@@ -3,12 +3,12 @@ const path = require("path");
 const { updateCloudanrt } = require("./cloudnary");
 
 const fonts = {
-    Roboto: {
-        normal: path.join(__dirname, "../public/fonts/Roboto-Regular.ttf"),
-        bold: path.join(__dirname, "../public/fonts/Roboto-MediumItalic.ttf"),
-        italics: path.join(__dirname, "../public/fonts/Roboto-Italic.ttf"),
-        bolditalics: path.join(__dirname, "../public/fonts/Roboto-BoldItalic.ttf"),
-    }
+  Roboto: {
+    normal: path.resolve(process.cwd(), "public/fonts/Roboto-Regular.ttf"),
+    bold: path.resolve(process.cwd(), "public/fonts/Roboto-Medium.ttf"),
+    italics: path.resolve(process.cwd(), "public/fonts/Roboto-Italic.ttf"),
+    bolditalics: path.resolve(process.cwd(), "public/fonts/Roboto-MediumItalic.ttf"),
+  }
 };
 
 pdfmake.addFonts(fonts);
